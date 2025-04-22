@@ -1,4 +1,5 @@
 using DataAccessLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 
@@ -17,16 +18,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")  // appsettings.json dosyasýný ekliyoruz.
-    .Build();
 
-string connectionString = configuration.GetConnectionString("DefaultConnection");  // ConnectionStrings içinden DefaultConnection'ý alýyoruz.
+// Connection String'i oku
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-using (var context = new AppDbContext(connectionString))  // DbContext'e baðlantý bilgisini veriyoruz.
-{
-    var customers = context.Customers.ToList();  // Customers tablosundaki tüm verileri çekiyoruz.
-}
+// AppDbContext'i servise ekle
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
+
+
 
 
 
