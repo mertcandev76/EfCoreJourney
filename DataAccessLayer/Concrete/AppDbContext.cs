@@ -10,12 +10,19 @@ namespace DataAccessLayer.Concrete
 {
     public class AppDbContext : DbContext
     {
+        private readonly string _connectionString;
 
+        public AppDbContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Bağlantı cümlesi buraya yazılır
-            optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=EfOrmJourneyDB; integrated security=true;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
         }
         public DbSet<Customer> Customers { get; set; }
     }

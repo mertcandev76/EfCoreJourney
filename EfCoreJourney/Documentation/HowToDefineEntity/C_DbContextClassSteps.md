@@ -1,74 +1,155 @@
-﻿2-DbContext Sınıfı Tanımlama Adımları 
+﻿2.2.İleri Düzeyde DbContext(Bağlantı cümlesi dışarıda)
 
-🔥 DbContext Nedir?
-DbContext sınıfı, Entity Framework Core’un veritabanıyla iletişim kurmasını sağlayan bir köprüdür.
-Senin için:
-
-Veritabanındaki tabloların C# sınıflarına bağlanmasını,
-
-CRUD işlemlerini (Create, Read, Update, Delete) yönetmeyi,
-
-Migration (veritabanı güncellemesi) gibi işleri yapar.
-
-🧠 DbContext Sınıfı Tanımlama Adımları
-1️. Entity Framework Core Paketlerini Ekle
-Projende önce EF Core kullanabilmek için NuGet paketlerini yüklersin:
-
-Install-Package Microsoft.EntityFrameworkCore
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.EntityFrameworkCore.Tools
-⚠️ SqlServer kullanıyoruz. Eğer başka bir veritabanı kullanıyorsan farklı paket gerekir.
-
-2.DbContext Sınıfını Oluştur
-
-OnConfiguring Metodu Nedir?
-OnConfiguring metodu, Entity Framework Core’da DbContext sınıfının bir üyesidir.
-Bu metodun amacı, veritabanı bağlantı ayarlarını yapmak ve DbContext’in nasıl davranacağını tanımlamaktır.
-
-Nerede Kullanılır?
-Eğer appsettings.json veya Dependency Injection (DI) üzerinden bağlantı cümlesi geçmiyorsan,
-direkt kodun içinde veritabanı bağlantısını tanımlamak için OnConfiguring kullanırsın.
-
-2.1.Temel DbContext(Bağlantı cümlesi içeride sabit)
-
-Senin Customer sınıfın bir Entity (Varlık) — yani bu sınıf veritabanındaki bir tablonun model hali.
-Ama bu sınıfın veritabanına bağlanıp işlem yapabilmesi için bir DbContext sınıfına ihtiyacı var. 
-İşte OnConfiguring metodu bu DbContext içinde kullanılır ve veritabanı bağlantı bilgisini tanımlar.
+2.2.1.👉 "Manual Instantiation" Yöntemi (Elle Nesne Oluşturma ya da Manuel Bağımlılık Yönetimi)
 
 
-Örnek:
 
-public class AppDbContext : DbContext
+DbContext Sınıfı — Parametreli Bağlantı Alacak
+
+1-public class AppDbContext : DbContext
 {
- 
+    private readonly string _connectionString;
+
+    public AppDbContext(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
     public DbSet<Customer> Customers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Bağlantı cümlesi buraya yazılır
-         optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=OrmJourneyDB; integrated security=true;");
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(_connectionString);
+        }
     }
 }
 
-Burada:
+💡 Açıklaması:
 
-💡 Anlamı:
-->OnConfiguring metodu, DbContext çalışırken hangi veritabanına bağlanacağını söyler.
-->optionsBuilder.UseSqlServer(...) Entity Framework’e hangi veritabanını kullanacağını ve bağlantı cümlesini söyler.
-Bu metod override edilmezse DbContext neye nasıl bağlanacağını bilmez.(Yani Sql server kullanıcağımızı belirtiyoruz)
-->İçerideki bağlantı cümlesi (Connection String) veritabanının adresi ve adı gibi bilgileri içerir.
-->Senin verdiğin Customer sınıfı, bu AppDbContext içindeki Customers DbSet’ine bağlı olur. Böylece Add, Update, Delete, List gibi işlemleri AppDbContext üzerinden yapabilirsin.
+🧠 public class AppDbContext : DbContext
 
+Bu sınıf, Entity Framework Core’un sağladığı DbContext sınıfından türetilir.
+DbContext yazılımda veritabanı ile kod arasındaki köprüdür.
 
-Ne Zaman Kullanılmaz?
-Gerçek, katmanlı projelerde.
-Startup.cs ya da .NET 6+ için Program.cs içindeki builder.Services.AddDbContext kullanılıyorsa,
-Bağlantı ayarlarını appsettings.json dosyasına koyduysan.
+📌 Görevi:
+Veritabanındaki tabloları temsil eder.
+Veriyi sorgulamak, kaydetmek, güncellemek için kullanılır.
 
 
+🔐 private readonly string _connectionString;
+Bu bir private field’dır.
+Dışarıdan bağlantı cümlesi alır ve saklar.
 
-2.2.İleri Düzeyde DbContext(Bağlantı cümlesi dışarıda)
+readonly demek:
+Sadece constructor'da set edilir.
+Sonradan değiştirilmez.
 
---NOT!! 
-Diğer commit işleminde anlatılıyor
+Bunun amacı:
+Bağlantı cümlesini dışarıdan almak, sabit yazmamak!
+(örn: appsettings.json ya da kullanıcıdan alınan string)
 
+
+
+🔧 public AppDbContext(string connectionString)
+
+Bu bir constructor (yapıcı metot).
+AppDbContext sınıfından nesne oluşturulurken çalışır.
+Dışarıdan gelen bağlantı cümlesini parametre olarak alır.
+
+_connectionString değişkenine atar.
+
+📌 Amaç:
+Veritabanı bağlantısını dışarıdan esnek bir şekilde almak.
+
+
+🗃️ public DbSet<Customer> Customers { get; set; }
+Entity Framework'teki Customer tablosunu temsil eder.
+Customer sınıfı bir tablo modeli.
+DbSet<Customer> → Veritabanındaki Customers tablosuyla çalışmanı sağlar.
+
+
+⚙️ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+Entity Framework’ün bir fonksiyonudur.
+DbContext açıldığında bağlantı ayarlarını yapılandırır.
+
+
+💡 if (!optionsBuilder.IsConfigured)
+Eğer optionsBuilder daha önce ayarlanmamışsa (UseSqlServer çağrılmamışsa),
+aşağıdaki satırı çalıştırır.
+
+
+💾 optionsBuilder.UseSqlServer(_connectionString);
+Burada bağlantı cümlesini kullanarak:
+Entity Framework’e "SQL Server kullanacaksın" der.
+_connectionString ile hangi sunucuya bağlanacağını belirtir.
+
+
+
+✅ Kısacası:
+
+Bu yapı sayesinde;
+Bağlantı cümlesi sabit kodlanmaz.
+Dışarıdan gelen connectionString kullanılır.
+DbContext her açıldığında doğru sunucuya bağlanır.
+
+🎯 Neden Bu Yapı Kullanılır?
+Projeyi farklı ortamlarda çalıştırmak kolay olsun diye. (development, test, production fark etmez.)
+Kodun başka yere taşınması daha esnek olur.
+Bağlantı cümlesi config dosyası, environment, ya da parametreyle değiştirilebilir.
+
+
+
+
+2-appsettings.json Kullanacaksan
+
+appsettings.json:
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.;Database=YourDbName;Trusted_Connection=True;"
+  }
+}
+
+
+3-Program.cs içinde:
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json") // appsettings.json dosyasını ekliyoruz.
+    .Build();
+
+
+string connectionString = configuration.GetConnectionString("DefaultConnection"); // ConnectionStrings içinden DefaultConnection'ı alıyoruz.
+
+using (var context = new AppDbContext(connectionString)) // DbContext'e bağlantı bilgisini veriyoruz.
+{
+    var customers = context.Customers.ToList();  // Customers tablosundaki tüm verileri çekiyoruz.
+    foreach (var customer in customers)
+    {
+        Console.WriteLine($"Name: {customer.Name}, Email: {customer.Email}");
+    }
+}
+
+Not:
+🔍 foreach Döngüsünün Mantığı:
+
+foreach (var customer in customers)
+{
+    Console.WriteLine($"Name: {customer.Name}, Email: {customer.Email}");
+}
+Burada foreach listesindeki her bir Customer nesnesi üzerinde işlem yapmak için kullanılır.
+Ama yazdığın {} bloğu tamamen senin kontrolünde.
+
+💡 Boş bırakabilirsin:
+Eğer şimdilik işlem yapmayacaksan, şu şekilde de yazabilirsin:
+
+foreach (var customer in customers)
+{
+    // Şimdilik işlem yok.
+}
+Kod hata vermez, çalışır.
+Ama mantıklı bir şey yapmaz — çünkü döngü içi boş.
+
+💡 Alternatif:
+Hiç kullanmayacaksan, foreach’e bile gerek yok:

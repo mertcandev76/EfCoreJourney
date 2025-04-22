@@ -1,3 +1,7 @@
+using DataAccessLayer.Concrete;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +16,20 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")  // appsettings.json dosyasýný ekliyoruz.
+    .Build();
+
+string connectionString = configuration.GetConnectionString("DefaultConnection");  // ConnectionStrings içinden DefaultConnection'ý alýyoruz.
+
+using (var context = new AppDbContext(connectionString))  // DbContext'e baðlantý bilgisini veriyoruz.
+{
+    var customers = context.Customers.ToList();  // Customers tablosundaki tüm verileri çekiyoruz.
+}
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
