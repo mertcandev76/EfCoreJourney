@@ -1,0 +1,31 @@
+﻿@model List<EntityLayer.Concrete.Customer>
+@{
+    ViewData["Title"] = "Müşteri Listesi";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<a class="btn btn-primary" href="/Customer/AddStaticCustomer">Sabit Müşteri Ekle</a>
+<a class="btn btn-secondary" href="/Customer/UpdateStaticCustomer">Sabit Müşteri Düzenle</a>
+<a class="btn btn-secondary" href="/Customer/DeleteStaticCustomer">Sabit Müşteri Sil</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Email</th>
+            <th>Telefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
