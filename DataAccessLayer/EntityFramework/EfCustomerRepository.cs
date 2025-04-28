@@ -12,6 +12,7 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfCustomerRepository:ICustomerDal
     {
+
         //AppDbContext sınfı manuel olsaydı aşağıdaki kodu yapıyoruz.
         //AppDbContext appDbContext = new AppDbContext();
 
@@ -28,38 +29,38 @@ namespace DataAccessLayer.EntityFramework
             return _appDbContext.Customers.FirstOrDefault(c => c.CustomerID == id);
         }
 
+
         // Tüm müşterileri listeleyen metod
         public List<Customer> GetAll()
         {
-            return _appDbContext.Customers.ToList();
+            var customer = _appDbContext.Customers.ToList();
+            return customer;
         }
-        // Yeni müşteri ekleyen metod
+
+
+        // Yeni müşteri ekleyen metod(Dynamic)
         public void Insert(Customer customer)
         {
-            // Varsayılan değerler atandı
-            customer.Name = "lorem ipsum";
-            customer.Email = "loremipsum@gmail.com";
-            customer.Phone = "123456789";
             _appDbContext.Customers.Add(customer);
-            // Değişiklikleri kaydediyoruz
             _appDbContext.SaveChanges();
         }
 
 
 
-        // Müşteri güncelleyen metod
+        // Müşteri güncelleyen metod(Dynamic)
         public void Update(Customer customer)
         {
-            var existingCustomer = GetById(customer.CustomerID);
+            var existingCustomer = GetById(customer.CustomerID); // ID'ye göre mevcut müşteri verisini al
 
             if (existingCustomer != null)
             {
-                // Sabit verilerle güncelleme
-                existingCustomer.Name = "updated lorem ipsum 2";  // Sabit yeni değer
-                existingCustomer.Email = "updatedloremipsum@gmail.com 2";  // Sabit yeni değer
-                existingCustomer.Phone = "987654321";  // Sabit yeni değer
+                // Gelen customer objesindeki verilerle mevcut veriyi güncelliyoruz
+                existingCustomer.Name = customer.Name;
+                existingCustomer.Email = customer.Email;
+                existingCustomer.Phone = customer.Phone;
 
-                _appDbContext.SaveChanges();  // Güncellenen müşteri bilgilerini kaydet
+                // Veritabanına kaydediyoruz
+                _appDbContext.SaveChanges();
             }
         }
         // Müşteri silme metod
@@ -68,10 +69,20 @@ namespace DataAccessLayer.EntityFramework
             var existingCustomer = GetById(customer.CustomerID);
             if (existingCustomer != null)
             {
-                
+
                 _appDbContext.Customers.Remove(existingCustomer); // Müşteri silinir
                 _appDbContext.SaveChanges(); // Değişiklik veritabanına kaydedilir
             }
         }
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -15,49 +15,75 @@ namespace EfCoreJourney.Controllers
             _customerDal = customerDal;
         }
 
+
         public IActionResult Index()
         {
-            var customers= _customerDal.GetAll();
+            var customers = _customerDal.GetAll();
             return View(customers);
         }
 
-
-        public IActionResult AddStaticCustomer()
+        //Müşteri ekleme
+        [HttpGet]
+        public IActionResult AddCustomer()
         {
-            // Boş bir Customer nesnesi oluşturuluyor
-            Customer customer = new Customer();
-
-            // EfCustomerRepository'deki Insert metodunda sabit veriler atanacak
-            _customerDal.Insert(customer);
-
-            // Ekleme sonrası listeye dön
-            return RedirectToAction("Index"); 
+            return View();
         }
 
-        // Sabit veri ile müşteri güncelleme
-        public IActionResult UpdateStaticCustomer(int id)
+        [HttpPost]
+        public IActionResult AddCustomer(Customer customer)
         {
-            id = 2;
-            // Müşteri verisini id'ye göre al
-            var customer = _customerDal.GetById(id);
-
-            if (customer == null)
+            if (ModelState.IsValid)  // Verinin geçerli olup olmadığını kontrol et
             {
-                return NotFound();  // Müşteri bulunamazsa hata döndür
+                _customerDal.Insert(customer);  // Veriyi veri katmanına gönder
+                return RedirectToAction("Index");  // Başarılıysa kullanıcıyı Index sayfasına yönlendir
             }
 
-            // EfCustomerRepository'deki Update metodunu çağırıyoruz, sabit verilerle güncelleme yapılacak
-            _customerDal.Update(customer);
-
-            // Güncelleme sonrası listeye dön
-            return RedirectToAction("Index");
+            return View(customer);  // Eğer veri geçerli değilse, aynı sayfaya geri dön
         }
 
-        // Sabit veri ile müşteri silme
-        public IActionResult DeleteStaticCustomer(int id)
+        //Müşteri Güncelleme
+
+        [HttpGet]
+        public IActionResult UpdateCustomer(int id)
         {
-            id = 3;
+            var existingCustomer = _customerDal.GetById(id);
+            if (existingCustomer == null)
+            {
+                return NotFound(); // Müşteri bulunamazsa 404 döner
+            }
+
+            return View(existingCustomer); // Formda göstermek için müşteriyi gönderiyoruz
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCustomer(Customer customer)
+        {
+            var existingCustomer = _customerDal.GetById(customer.CustomerID);
+            if (existingCustomer == null)
+            {
+                return NotFound(); // Yine id yanlışsa veya müşteri yoksa 404
+            }
+
+            if (ModelState.IsValid)
+            {
+                _customerDal.Update(customer); // Veritabanında güncelleme
+                return RedirectToAction("Index"); // Güncelleme sonrası listeye dön
+            }
+
+            return View(customer); // Hatalıysa formu tekrar göster
+        }
+
+
+        // Sabit veri ile müşteri silme
+        public IActionResult DeleteCustomer(int id)
+        {
+           
             var customer = _customerDal.GetById(id);
+            // Müşteri bulunamazsa hata mesajı döndürülebilir
+            if (customer == null)
+            {
+                return NotFound("Müşteri bulunamadı");
+            }
             _customerDal.Delete(customer); // ID üzerinden silme
             return RedirectToAction("Index");
         }

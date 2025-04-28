@@ -16,8 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQWRkQ3VzdG9tZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/UpdateCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcVXBkYXRlQ3VzdG9tZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Home/Index.cshtml]
