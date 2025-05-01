@@ -1,21 +1,17 @@
 ﻿@model List<EntityLayer.Concrete.Customer>
+
 @{
     ViewData["Title"] = "Müşteri Listesi";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<!-- Müşteri Ekle Linki -->
-<a class="btn btn-primary" href="/Customer/AddCustomer">Müşteri Ekle</a>
-
-<!-- Müşteri Listesi Tablosu -->
 <table class="table">
     <thead>
         <tr>
             <th>Ad</th>
             <th>Email</th>
             <th>Telefon</th>
-            <th>İşlemler</th> <!-- Yeni Kolon -->
         </tr>
     </thead>
     <tbody>
@@ -25,15 +21,7 @@
                 <td>@item.Name</td>
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
-                <td>
-                    <!-- Güncelleme Linki -->
-                    <a asp-action="UpdateCustomer" asp-route-id="@item.CustomerID" class="btn btn-warning">Güncelle</a>
-
-                    <!-- Silme Linki (burada bir confirmation isteyebiliriz) -->
-                    <a asp-action="DeleteCustomer" asp-route-id="@item.CustomerID" class="btn btn-danger">Sil</a>
-                </td>
             </tr>
         }
     </tbody>
 </table>
-
