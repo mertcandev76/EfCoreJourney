@@ -1,4 +1,4 @@
-﻿@model List<EntityLayer.Concrete.Customer>
+﻿@model EfCoreJourney.Models.CustomerListViewModel
 
 @{
     ViewData["Title"] = "Müşteri Listesi";
@@ -6,22 +6,57 @@
 
 <h1>@ViewData["Title"]</h1>
 
+
+<!-- Müşteri Ekle Linki -->
+<a class="btn btn-primary" href="/Customer/AddCustomer">Müşteri Ekle</a>
+
+
+<h2>Toplam Müşteri: @Model.TotalCustomerCount</h2>
+
+@if (Model.IsCustomerExist)
+{
+    <p>
+        <strong>Temsilci Müşteri:</strong>
+        @Model.RepresentativeCustomer.FirstName
+        @Model.RepresentativeCustomer.LastName
+        @Model.RepresentativeCustomer.Age
+        @Model.RepresentativeCustomer.Email
+        @Model.RepresentativeCustomer.Phone
+        @Model.RepresentativeCustomer.Address
+
+   </p>
+}
+else
+{
+    <p>Hiç müşteri bulunamadı.</p>
+}
+
+
 <table class="table">
     <thead>
         <tr>
             <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
             <th>Email</th>
             <th>Telefon</th>
+            <th>Adres</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+
+        @foreach (var item in Model.Customers)
         {
             <tr>
-                <td>@item.Name</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Age</td>
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
+                <td>@item.Address</td>
             </tr>
         }
+
     </tbody>
 </table>
+

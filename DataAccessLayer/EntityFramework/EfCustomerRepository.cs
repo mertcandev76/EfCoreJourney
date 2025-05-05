@@ -19,19 +19,27 @@ namespace DataAccessLayer.EntityFramework
         {
             _appDbContext = appDbContext;
         }
-
-        public void Delete(Customer customer)
+        async Task<List<Customer>> ICustomerDal.GetAll()
         {
-            throw new NotImplementedException();
+            return await _appDbContext.Customers.ToListAsync();
         }
-        
-        public async Task<List<Customer>> GetAll()
+        public async Task<Customer> GetSingleCustomerOperationAsync()
         {
+            return await _appDbContext.Customers.FirstOrDefaultAsync();
+        }
+        public async Task<int> GetCustomerStatisticsAsync()
+        {
+            return await _appDbContext.Customers.CountAsync();
+        }
 
-            return await _appDbContext.Customers
-                .Where(x=>x.CustomerID>5)
-                .OrderBy(x=>x.Name)
-               .ToListAsync();
+        public async Task<bool> CustomerExistsAsync()
+        {
+            return await _appDbContext.Customers.AnyAsync(x=>x.FirstName=="Cabbar");
+        }
+        public async Task InsertAsync(Customer customer)
+        {
+            await _appDbContext.Customers.AddAsync(customer);
+            await _appDbContext.SaveChangesAsync();
         }
 
         public Customer GetById(int id)
@@ -39,7 +47,7 @@ namespace DataAccessLayer.EntityFramework
             throw new NotImplementedException();
         }
 
-        public void Insert(Customer customer)
+        public void Delete(Customer customer)
         {
             throw new NotImplementedException();
         }

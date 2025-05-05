@@ -10,8 +10,12 @@ namespace DataAccessLayer.Abstract
     public interface ICustomerDal
     {
         Customer GetById(int id);  // ID ile müşteri al
-        Task<List<Customer>> GetAll();  // Asenkron metodun dönüş tipi 
-        void Insert(Customer customer);
+        Task<List<Customer>> GetAll();
+        Task<Customer> GetSingleCustomerOperationAsync();
+        Task<int> GetCustomerStatisticsAsync();
+        Task<bool> CustomerExistsAsync();
+
+         Task InsertAsync(Customer customer);
 
         void Update(Customer customer);
 
