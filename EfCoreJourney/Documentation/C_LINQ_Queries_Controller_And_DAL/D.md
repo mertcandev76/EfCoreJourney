@@ -1,53 +1,139 @@
-﻿Aggregate Functions-Tekli Veri Getiren Sorgulama Fonksiyonları
+﻿Projeksiyon (Projection) Çoklu Veri Getiren Sorgulama Fonksiyonu
+Veritabanından çekilen verilerin tamamını değil, sadece istenilen alanlarını seçerek veya başka bir yapıya dönüştürerek kullanmaktır. LINQ’de bu amaçla genellikle Select() ve SelectMany() metodları kullanılır.
 
-8-🔹Count() Nedir?
-Count() metodu, bir koleksiyondaki eleman sayısını döndürmek için kullanılır. Veritabanı sorgularında, koleksiyonlarda ve IEnumerable, IQueryable gibi yapılarda çok yaygın bir şekilde kullanılır.
-
-Açıklama: Koleksiyondaki öğelerin sayısını döndürür.
-Dönüş Tipi: int
-Asenkron Versiyon: CountAsync()
-Dönüş Tipi: Task<int>
-Kullanım: Koleksiyondaki öğe sayısını asenkron olarak döndürür.
+| Operatör    | Kavram Olarak | Uygulandığı Veri | Sonuç |
+| ----------- | ------------- | ---------------- | ----- |
+| Distinct()  | Çoğul İşlem   | Çoğul            | Çoğul |
+| Union()     | Çoğul İşlem   | Çoğul + Çoğul    | Çoğul |
+| Intersect() | Çoğul İşlem   | Çoğul + Çoğul    | Çoğul |
+| Except()    | Çoğul İşlem   | Çoğul + Çoğul    | Çoğul |
 
 
-✅ Count() – Eleman Türü ve Dönüş Tipi Tablosu
+Projeksiyon (Projection)-Tekli Veri Getiren Sorgulama Fonksiyonları
 
-| Koleksiyondaki Eleman Türü | `Count()` Dönüş Tipi | `CountAsync()` Dönüş Tipi | Açıklama                             
-| -------------------------- | -------------------- | ------------------------- | -------------------------------------
-| `int`                      | `int`                | `Task<int>`               | Elemanlar sayılır, tür önemli değil          |
-| `string`                   | `int`                | `Task<int>`               | Geçerli                                      |
-| `Product` (sınıf)          | `int`                | `Task<int>`               | Entity sayılır                               |
-| `decimal`                  | `int`                | `Task<int>`               | Değer sayısı                                 |
-| `bool`                     | `int`                | `Task<int>`               | Koşula göre sayım yapılabilir                |
-| `nullable` türler (`int?`) | `int`                | `Task<int>`               | `null` olanlar filtrelenmedikçe dahil edilir |
-| **Herhangi bir tür         | `int`                | `Task<int>`               | Her koleksiyonda `Count` yapılabilir         
+16-🔹 Select() 
+Select(), koleksiyon üzerindeki her öğeyi dönüştürmek için kullanılır. Genellikle bir nesnenin tüm özellikleri yerine sadece ihtiyacımız olan özelliklerini seçmek veya yeni bir anonim/DTO nesne oluşturmak için kullanılır.
 
-🔹 Temel Kullanım
-return await _appDbContext.Customers.CountAsync();
-Customers tablosundaki toplam müşteri sayısını verir.
+🔧 Günlük Hayattan Basit Bir Benzetme
+Diyelim ki elinde müşteri dosyaları var. Her dosyada bu bilgiler var:
 
-🔹 Şartlı Kullanım
-return await _appDbContext.Customers
-    .CountAsync(c => c.Address.Contains("Avcılar"));
-Adresi “Avcılar” içeren müşterilerin sayısını döndürür.
+Ad
+Soyad
+Yaş
+E-posta
+Telefon
 
-Örnek
-Aynı Soyada Sahip Müşteri Sayısı
-return await _appDbContext.Customers.CountAsync(c => c.LastName == "Demir");
-
-View'da Count Göstermek (Razor)
-
-1-@_appDbContext.Customers.Count()
-ya da
-2-Toplam Müşteri Sayısı: @Model.Count()
-
-Not!!!
-CountAsync() int türünde bir değer döndürür.
-Eğer amaç sadece müşteri sayısını almaksa:
-
-public async Task<int> GetCustomerCountAsync()
+Ama sen sadece ad ve soyad istiyorsun. Gidip tüm dosyaları taşımazsın. Sadece ad ve soyadları kopyalarsın → işte bu Select().
+📄 Müşteri Sınıfın (Customer)
+public class Customer
 {
-    return await _appDbContext.Customers.CountAsync();
+    public int CustomerID { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public int? Age { get; set; }
+    public string? Email { get; set; }
 }
 
+🧠 Senaryo:
+Tüm müşterilerin sadece ad ve soyadlarını al.
+✅ 1. Adım: Kod EfCustomerRepository'ye Yazılacak
+public class EfCustomerRepository : ICustomerDal
+
+✅ 2. Adım: DTO Oluştur
+Projenin mimarisine göre DTO sınıflarını ayrı bir klasörde tutmak en doğrusudur.
+
+
+├── DTOsLayer/
+│    └── DTOs/
+│        └── CustomerNameDto.cs  ✅ BURAYA
+│── YourProjectName
+│
+├── EntityLayer/
+├── DataAccessLayer/
+├── BusinessLayer/
+├── Controllers/
+└── Views/
+
+public class CustomerNameDto
+{
+    public string FullName { get; set; }
+}
+
+✅ 3. Adım: EfCustomerRepository İçine Yeni Metot Ekle
+
+public async Task<List<CustomerNameDto>> GetCustomerFullNamesAsync()
+{
+    return await _appDbContext.Customers
+        .Select(c => new CustomerNameDto
+        {
+            FullName = c.FirstName + " " + c.LastName
+            /*
+            FirstName ve LastName veritabanından okunuyor,
+            ama sadece birleştirilip FullName adlı tek bir string'e dönüştürülüyor.
+            */
+
+        })
+        .ToListAsync();
+}
+
+CustomerNameDto sınıfında sadece FullName (yani "Ad + Soyad") yazdık çünkü:
+Select() ile hem adı hem soyadı birleştirip tek bir string haline getiriyoruz.
+Artık ayrı ayrı FirstName ve LastName alanlarına ihtiyaç kalmıyor çünkü zaten FullName = "Ahmet Yılmaz" gibi tek bir alan olarak dönüyor.
+
+📝 Peki ayrı ayrı almak isteseydik?
+2.adımdaki 
+O zaman DTO şöyle olurdu:
+public class CustomerNameDto
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+Ve Select() böyle yazılırdı:
+.Select(c => new CustomerNameDto
+{
+    FirstName = c.FirstName,
+    LastName = c.LastName
+})
+
+
+✅ 4. Adım: ICustomerDal Arayüzüne Tanımla
+Task<List<CustomerNameDto>> GetCustomerFullNamesAsync();
+
+----->1-Eğer Ayrı Bir Controllerda Çalışmak İstiyorsan-CustomerNames()
+
+✅ 5. Adım: Controller'da Çağır
+public async Task<IActionResult> CustomerNames()
+{
+    var names = await _customerDal.GetCustomerFullNamesAsync();
+    return View(names); // veya return Json(names);
+}
+
+✅ 6.  View Oluşturma
+İlk olarak, CustomerNames adlı bir View oluşturacağız. Bu View, CustomerNameDto listesini alacak ve ekranda gösterecek.
+
+CustomerNames.cshtml view sayfası
+@model List<DTOsLayer.DTOs.CustomerNameDto>
+
+@{
+    ViewData["Title"] = "Müşteri Adı ve Soyadı";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.FullName</td>
+            </tr>
+        }
+    </tbody>
+</table>
 

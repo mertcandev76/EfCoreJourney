@@ -1,99 +1,47 @@
-﻿11-🔹Min() Nedir?
+﻿19-🔹  Union()
+LINQ'deki Union metodu, iki koleksiyondaki aynı türdeki verileri birleştirip tekrar edenleri kaldırarak, SQL'deki UNION ifadesi gibi yeni bir koleksiyon döndürür.
 
-bir koleksiyondaki en küçük değeri almak için kullanılır. Bu fonksiyon, genellikle sayısal veya sıralanabilir (comparable) veri türleriyle çalışır. Min() fonksiyonu, bir koleksiyon üzerinde çalışırken, sıralanabilir veri türlerinin en küçük değerini döndüren bir işlem gerçekleştirir.
+Union Kullanım Şartları:
 
-Kullanım Örneği:
-Aşağıdaki örnekte, Customer tablosundaki en küçük Age (Yaş) değerini almak için Min() fonksiyonu kullanılmaktadır:
+Koleksiyonlar aynı veri tipine sahip olmalıdır.
+Eğer özel tip (class) üzerinde Union() yapılacaksa, Equals() ve GetHashCode() override edilmelidir ya da Select ile sade türlere dönüştürülmelidir (örneğin FirstName, Email vs.).
 
-public async Task<int?> GetMinAgeAsync()
+ Basit Örnek: İki string listesini birleştir
+
+ List<string> list1 = new List<string> { "Ali", "Ayşe", "Mert" };
+List<string> list2 = new List<string> { "Mert", "Zeynep", "Fatma" };
+
+var result = list1.Union(list2).ToList();
+
+// Sonuç: Ali, Ayşe, Mert, Zeynep, Fatma
+
+Örnek: Customer FirstName'lerini birleştirme
+
+public async Task<List<string?>> GetUnionCustomerNamesAsync()
 {
-    var minAge = await _context.Customers
-                                .Where(c => c.Age.HasValue) // Null olmayan yaşları al
-                                .MinAsync(c => c.Age);      // En küçük yaşı al
-    return minAge;
+    // 1. Aktif müşterileri al
+    var activeNames = await _appDbContext.Customers
+        .Where(c => c.IsActive == true && c.FirstName != null)
+        .Select(c => c.FirstName)
+        .ToListAsync();
+
+    // 2. Pasif müşterileri al
+    var inactiveNames = await _appDbContext.Customers
+        .Where(c => c.IsActive == false && c.FirstName != null)
+        .Select(c => c.FirstName)
+        .ToListAsync();
+
+    //Not!!! 3. Union işlemi bellekte yapılır(Union işlemini asenkron olarak yapmak biraz farklıdır çünkü Union() metodu bellek içi (in-memory) bir LINQ işlemi olduğundan veritabanı üzerinde doğrudan UnionAsync() gibi bir metod yoktur.)
+    var result = activeNames.Union(inactiveNames).ToList();
+
+    return result;
 }
-Açıklamalar:
+📌 Neden Böyle Yapıyoruz?
+EF Core veritabanında Union() desteklese bile, çoğu zaman .Union() ile yazılan sorgular doğrudan SQL'e çevrilemez.
+Bu yüzden genelde iki parçayı ayrı ayrı asenkron alıp bellekte birleştirmek daha güvenlidir.
 
-Where(c => c.Age.HasValue) filtresi, null olmayan yaş değerlerini almak için kullanılır.
-MinAsync(c => c.Age) ise bu değerler arasında en küçük olanı döndürür.
-
-12-🔹 Max() Fonksiyonu
-Max() fonksiyonu, bir koleksiyondaki en büyük değeri almak için kullanılır. Min() fonksiyonunun zıttı olarak, en yüksek değeri döndürür. Bu fonksiyon da sıralanabilir veri türleri üzerinde çalışır.
-
-Kullanım Örneği:
-Aşağıdaki örnekte, Customer tablosundaki en büyük Age (Yaş) değerini almak için Max() fonksiyonu kullanılmaktadır:
-
-public async Task<int?> GetMaxAgeAsync()
-{
-    var maxAge = await _context.Customers
-                                .Where(c => c.Age.HasValue) // Null olmayan yaşları al
-                                .MaxAsync(c => c.Age);      // En büyük yaşı al
-    return maxAge;
-}
-Açıklamalar:
-
-Where(c => c.Age.HasValue) filtresi, null olmayan yaş değerlerini almak için yine kullanılır.
-MaxAsync(c => c.Age) fonksiyonu, bu değerler arasında en büyük olanı döndürür. 
-
-
-
-Min() ve Max() Kullanırken Dikkat Edilmesi Gerekenler
-
-Min() fonksiyon üzerinden anlatalım:
-
-1. Nullable Değerler ve null Kontrolü
-Min() fonksiyonu nullable türlerle çalışırken bazı özel durumlar yaratabilir. Eğer koleksiyon null değeri içeren öğelere sahipse, bu değerler göz ardı edilir, ancak yine de dikkat edilmesi gereken bazı noktalar vardır.
-
-Öneri:
-Null Değerlerin Göz Ardı Edilmesi: Min() fonksiyonu, nullable türlerde (örneğin int?, decimal?, DateTime?) null değerleri görmezden gelir. Bu yüzden veritabanındaki bazı değerler null olabilir. Eğer null değerler göz önünde bulundurulmak isteniyorsa, önce Where() ile null değerlerin filtrelenmesi önerilir.
-
-// Nullable olmayanları filtreleyerek min yaş alır
-var minAge = _context.Customers
-                     .Where(c => c.Age.HasValue) // Null olmayan yaşlar
-                     .MinAsync(c => c.Age);
-
-2. Boş Koleksiyonlar ve InvalidOperationException
-Eğer koleksiyon boşsa, Min() fonksiyonu bir InvalidOperationException hatası fırlatır. Bu, özellikle veritabanı sorgularında önemli bir noktadır, çünkü bazen veritabanı boş olabilir veya sorgu, hiç veri döndürmeyebilir.
-
-
-✅ Min() ve Max() – Eleman Türü ve Dönüş Tipi Tablosu
-
-| Koleksiyondaki Eleman Türü | `Min()` Dönüş Tipi | `Max()` Dönüş Tipi | `MinAsync()` Dönüş Tipi | `MaxAsync()` Dönüş Tipi | Açıklama                                       |
-| -------------------------- | ------------------ | ------------------ | ----------------------- | ----------------------- | ---------------------------------------------- |
-| `int`                      | `int`              | `int`              | `Task<int>`             | `Task<int>`             | Sayısal veriler için                           |
-| `long`                     | `long`             | `long`             | `Task<long>`            | `Task<long>`            | Büyük sayılar için                             |
-| `float`                    | `float`            | `float`            | `Task<float>`           | `Task<float>`           | Ondalık sayılar                                |
-| `double`                   | `double`           | `double`           | `Task<double>`          | `Task<double>`          | Yüksek hassasiyetli ondalıklı veriler          |
-| `decimal`                  | `decimal`          | `decimal`          | `Task<decimal>`         | `Task<decimal>`         | Finansal ve hassas veriler için                |
-| `DateTime`                 | `DateTime`         | `DateTime`         | `Task<DateTime>`        | `Task<DateTime>`        | Tarih verileri için                            |
-| `DateTimeOffset`           | `DateTimeOffset`   | `DateTimeOffset`   | `Task<DateTimeOffset>`  | `Task<DateTimeOffset>`  | Zaman dilimi bilgisiyle tarih                  |
-| `TimeSpan`                 | `TimeSpan`         | `TimeSpan`         | `Task<TimeSpan>`        | `Task<TimeSpan>`        | Zaman farkları                                 |
-| `Guid`                     | `Guid`             | `Guid`             | `Task<Guid>`            | `Task<Guid>`            | Benzersiz kimlikler                            |
-| `string`                   | `string`           | `string`           | `Task<string>`          | `Task<string>`          | Alfabetik sıralama                             |
-| `nullable int?`            | `int?`             | `int?`             | `Task<int?>`            | `Task<int?>`            | Nullable sayılar                               |
-| `nullable long?`           | `long?`            | `long?`            | `Task<long?>`           | `Task<long?>`           | Nullable büyük sayılar                         |
-| `nullable float?`          | `float?`           | `float?`           | `Task<float?>`          | `Task<float?>`          | Nullable ondalıklı sayılar                     |
-| `nullable double?`         | `double?`          | `double?`          | `Task<double?>`         | `Task<double?>`         | Nullable yüksek hassasiyetli ondalıklı veriler |
-| `nullable decimal?`        | `decimal?`         | `decimal?`         | `Task<decimal?>`        | `Task<decimal?>`        | Nullable finansal veriler                      |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| İşlem                           | Kullanım                   |
+| ------------------------------- | -------------------------- |
+| Veriyi çekme                    | `ToListAsync()`            |
+| Union işlemi (asenkron sonrası) | `Union()`                  |
+| Asenkron tüm işlem              | `await + Union + ToList()` |

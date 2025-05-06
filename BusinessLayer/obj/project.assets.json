@@ -1137,6 +1137,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DTOsLayer": "1.0.0",
           "EntityLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0"
@@ -1146,6 +1147,16 @@
         },
         "runtime": {
           "bin/placeholder/DataAccessLayer.dll": {}
+        }
+      },
+      "DTOsLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/DTOsLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOsLayer.dll": {}
         }
       },
       "EntityLayer/1.0.0": {
@@ -3487,6 +3498,11 @@
       "path": "../DataAccessLayer/DataAccessLayer.csproj",
       "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
     },
+    "DTOsLayer/1.0.0": {
+      "type": "project",
+      "path": "../DTOsLayer/DTOsLayer.csproj",
+      "msbuildProject": "../DTOsLayer/DTOsLayer.csproj"
+    },
     "EntityLayer/1.0.0": {
       "type": "project",
       "path": "../EntityLayer/EntityLayer.csproj",
@@ -3495,6 +3511,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "DTOsLayer >= 1.0.0",
       "DataAccessLayer >= 1.0.0",
       "EntityLayer >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.0",
@@ -3538,6 +3555,9 @@
           "projectReferences": {
             "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\DataAccessLayer\\DataAccessLayer.csproj": {
               "projectPath": "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\DataAccessLayer\\DataAccessLayer.csproj"
+            },
+            "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\DTOsLayer\\DTOsLayer.csproj": {
+              "projectPath": "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\DTOsLayer\\DTOsLayer.csproj"
             },
             "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\EntityLayer\\EntityLayer.csproj": {
               "projectPath": "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\EntityLayer\\EntityLayer.csproj"

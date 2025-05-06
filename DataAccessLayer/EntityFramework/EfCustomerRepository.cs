@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
+using DTOsLayer.DTOs;
 
 namespace DataAccessLayer.EntityFramework
 {
@@ -40,7 +41,27 @@ namespace DataAccessLayer.EntityFramework
         {
             return await _appDbContext.Customers.SumAsync(c => c.Age ?? 0);
         }
+        public async Task<List<CustomerNameDto>> GetCustomerFullNamesAsync()
+        {
+            return await _appDbContext.Customers
+            .Select(x => new CustomerNameDto
+            {
+                FirstName = x.FirstName,
+                LastName=x.LastName
+            }).ToListAsync();
+        }
+        public async Task<List<string?>> GetDistinctFirstNamesAsync()
+        {
 
+            return await _appDbContext.Customers
+                .Select(x => x.FirstName)
+                .Distinct()
+                .ToListAsync();
+      //      return await _appDbContext.Customers
+      //.Select(c => c.FirstName)
+      //.Distinct()
+      //.ToListAsync();
+        }
         public async Task InsertAsync(Customer customer)
         {
             await _appDbContext.Customers.AddAsync(customer);
@@ -62,6 +83,6 @@ namespace DataAccessLayer.EntityFramework
             throw new NotImplementedException();
         }
 
-       
+     
     }
 }

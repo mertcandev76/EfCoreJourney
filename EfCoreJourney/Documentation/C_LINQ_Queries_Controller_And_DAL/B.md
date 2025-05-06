@@ -1,90 +1,74 @@
-﻿1. Nullable ve Nullable Olmayan Değerlerle Filtreleme Yaparken 
-ORM sorgularında HasValue veya GetValueOrDefault() gibi fonksiyonlar, aslında genellikle veritabanındaki null değerleri kontrol ederken kullanılabilir, ancak bu metodları kullanmak çoğu zaman gereksizdir. ORM'ler bu kontrolleri derleyici seviyesinde optimize eder ve SQL sorguları veritabanı üzerinde çalışırken nullable değerler için doğru sorguyu oluşturur.
+﻿14-🔹 All()
+Koleksiyondaki tüm elemanların belirli bir koşulu sağlayıp sağlamadığını kontrol eder.
 
-Öğretici Örnekler:
+✅ All() – Eleman Türü ve Dönüş Tipi Tablosu
 
-Örnek 1:
+|  Eleman Türü       | `All()` Dönüş Tipi | `AllAsync()`| Açıklama                                                   |
+| -------------------| ------------------ | ------------|------------------------------------------------------------|
+| `int`              | `bool`             | `Task<bool>`| Tüm elemanlar belirli bir sayısal koşulu sağlıyor mu?      |
+| `long`             | `bool`             | `Task<bool>`| Büyük sayı koleksiyonlarında tüm elemanlar kontrolü        |
+| `float`            | `bool`             | `Task<bool>`| Tüm ondalık veriler belli bir aralıktamı?                  |
+| `double`           | `bool`             | `Task<bool>`| Daha hassas karşılaştırmalar için                          |
+| `decimal`          | `bool`             | `Task<bool>`| Finansal verilerde tüm değerler belirli eşiklerigeçiyor mu?|
+| `string`           | `bool`             | `Task<bool>`| Tüm string’ler boş değil mi? Belirli kurala uygun mu?      |
+| `DateTime`         | `bool`             | `Task<bool>`| Tüm tarihler belli bir zaman aralığında mı?                |
+| `DateTimeOffset`   | `bool`             | `Task<bool>`| Tüm zaman dilimli tarihler bir koşulu sağlıyor mu?         |
+| `TimeSpan`         | `bool`             | `Task<bool>`| Tüm süreler belirli bir uzunluğun üstünde mi?              |
+| `Guid`             | `bool`             | `Task<bool>`| Tüm kimlikler belirli bir yapıya uygun mu?                 |
+| `bool`             | `bool`             | `Task<bool>`| Tüm değerler `true` mu?                                    |
+| `nullable int?`    | `bool`             | `Task<bool>`| Tüm nullable değerler null değil mi?                       |
+| `nullable decimal?`| `bool`             | `Task<bool>`| Tüm finansal nullable değerler geçerli mi?                 |
+| `Customer`(class)  | `bool`             | `Task<bool>`| Tüm müşteriler aktif mi? Tüm nesneler  kurala uyuyor mu?   |
 
--->Bu kullanım doğrudur
-public int? Age { get; set; }
+Kullanım Senaryosu:
+Tüm müşteriler e-posta adresine sahip mi?
 
+All() metodu şartsız olarak doğrudan kullanılamaz, çünkü All() mutlaka bir şart (predicate) ister. Any() gibi şartsız hali yoktur.
+❌ Geçersiz Kullanım (HATA VERİR):
+var result = customers.All(); // Derleme hatası: Predicate eksik
 
-var customers = _appDbContext.Customers
-    .Where(c => c.Age != null) // null olmayan yaşları filtreleyebilirsiniz
-    .ToList();
-Burada, Age nullable olduğu için, ORM otomatik olarak SQL'de IS NOT NULL sorgusunu oluşturur.(c.Age != null: Age değeri null olmayan müşterileri filtreler.)
-Örnek 2:
+Şartlı Kullanım
+public async Task<bool> AllCustomersHaveEmailAsync()
+{
+    return await _appDbContext.Customers.AllAsync(c => c.Email != null && c.Email != "");
+}
+Açıklama:
+Eğer tüm müşterilerin Email bilgisi varsa true döner.
+Tek bir müşteri bile null ya da boş e-posta adresine sahipse false döner.
 
--->Bu kullanım doğrudur
-public int? Age { get; set; }
+-->ViewModel de Nasıl Çağırırız
+public class CustomerListViewModel
+{
+    public bool AllHaveEmail { get; set; }
+    // Diğer özellikler...
+}
 
-var customers = _appDbContext.Customers
-    .Where(c => c.Age == null) // null olan yaşları filtreleyebilirsiniz
-    .ToList();
-(c.Age == null: Age değeri null olan müşterileri filtreler.)
+-->Controllerda Nasıl Çağırırız.
+public async Task<IActionResult> Index()
+{
+var allHaveEmail = await ((EfCustomerRepository)_customerDal).AllCustomersHaveEmailAsync(); // All
+ var model = new CustomerListViewModel
+    {
+        AllHaveEmail = allHaveEmail,
+    };
 
-Örnek 3:
+    return View(model);
+}
 
--->Bu kullanım yanlıştır çünkü
+-->Viewdeki Görünüm Halinden  Nasıl Çağırırız.
+@model CustomerListViewModel
 
-public int Age { get; set; }
-var customers = _appDbContext.Customers
-    .Where(c => c.Age == null) // Bu yanlış olur çünkü Age null olamaz.
-    .ToList();
+<h2>Müşteri E-posta Kontrolü</h2>
 
-Burada, Age nullable olmayan bir int türünde tanımlanmış. Yani, Age değeri her zaman geçerli bir tam sayı olmalıdır ve null olamaz. Bu durumda, Age == null ifadesi hata verir çünkü Age nullable olmadığı için null değerini kabul etmez.
-
-
-Örnek 4:
-
--->Bu kullanım yanlıştır çünkü
-
-public int Age { get; set; }
-var customers = _appDbContext.Customers
-    .Where(c => c.Age != null) // Bu yanlış olur çünkü Age null olamaz.
-    .ToList();
-
-Age bir int türü olduğu için null olamaz. Bu nedenle, Age != null koşulunu kullanmak anlamlı değildir.
-Age her zaman bir sayısal değere (tam sayıya) sahip olmalıdır. Yani, null kontrolü yapmak mümkün değildir.
-
-
-şimdi yukarıdaki öğretici örnekleri anladığımıza göre iki tane örnek yapalım:
-
-
-Pekiştirmeli Örnekler
-
-public int? Age { get; set; }
-
-Örnek 1:
-
-Yaşı 20'den küçük olanları ve null olanları almak
-return await _appDbContext.Customers
-    .Where(c => c.Age < 20 || c.Age == null) // Yaşı 20'den küçük ve null olanları filtreler
-    .ToListAsync();
-
-
-Örnek 2:
-Yaşı 20'den küçük olanları ve null olmayan olanları almak
-
-1.adım     
-.Where(c => c.Age < 20 || c.Age != null) // Yaşı 20'den küçük ve null olmayanları filtreler
-    .ToListAsync();
-
-2.adım
-.Where(c => c.Age < 20) // Yaşı 20'den küçük ve null olmayanları filtreler
-    .ToListAsync();
-
-1.adım gereksiz kod yazımı olmuştur çünkü  Zaten Age > 20 demek, Age != null anlamına da gelir (null bir değerle > karşılaştırması yapılamaz).
-
-
-
-
-
-
-
-
-
-
-
-
-
+@if (Model.AllHaveEmail)
+{
+    <div class="alert alert-success">
+        Tüm müşterilerin e-posta adresi mevcuttur.
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Bazı müşterilerin e-posta adresi eksik!
+    </div>
+}

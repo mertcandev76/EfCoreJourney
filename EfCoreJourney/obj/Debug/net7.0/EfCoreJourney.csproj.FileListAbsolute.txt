@@ -257,3 +257,5 @@ C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney\obj\Debug\net7.0\EfCoreJourney.pdb
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney\obj\Debug\net7.0\EfCoreJourney.genruntimeconfig.cache
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney\obj\Debug\net7.0\ref\EfCoreJourney.dll
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney\bin\Debug\net7.0\DTOsLayer.dll
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney\bin\Debug\net7.0\DTOsLayer.pdb

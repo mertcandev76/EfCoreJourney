@@ -1,53 +1,125 @@
-﻿10-🔹Average() Nedir?
+﻿Set Operations
+ LINQ'te birden fazla liste (koleksiyon) veya veritabanı sorgusu üzerinde kesişim, birleşim, fark gibi işlemleri yapmamızı sağlar.
 
-LINQ’in agregat (toplayıcı) metotlarından biri olan Average, sayısal türdeki bir property'sinin ortalamasını hesaplar ve hem bellek içindeki koleksiyonlarda hem de veritabanı sorgularında kullanılabilir.
+Bunlar matematikteki küme işlemlerinin programlamadaki karşılığıdır. LINQ ile koleksiyonlar üzerinde kolayca bu işlemleri gerçekleştirebiliriz.
 
-Açıklama: Koleksiyondaki öğelerin ortalamasını döndürür.
-Dönüş Tipi: double
-Asenkron Versiyon: AverageAsync()
-Dönüş Tipi: Task<double>
-Kullanım: Koleksiyondaki öğelerin ortalamasını asenkron olarak döndürür.
+🔸 Kullanılan Başlıca Set Operasyonları
 
-Average() Eleman Türü ve Dönüş Tipi Tablosu
+| Metot         | Anlamı                 | Açıklama                                                   |
+| ------------- | ---------------------- | ---------------------------------------------------------- |
+| `Distinct()`  | Yinelenenleri kaldırır | Bir koleksiyondaki tekrar eden öğeleri çıkarır.            |
+| `Union()`     | Birleşim               | İki koleksiyonu birleştirir, tekrar edenleri 1 kez alır.   |
+| `Intersect()` | Kesişim                | İki koleksiyonda da ortak olan öğeleri getirir.            |
+| `Except()`    | Fark                   | Bir koleksiyonda olup, diğerinde olmayan öğeleri döndürür. |
 
-| Eleman Türü | `Average()` Dönüş Tipi | `AverageAsync()` Dönüş Tipi |
-| ----------- | ---------------------- | --------------------------- |
-| `int`       | `double`               | `Task<double>`              |
-| `long`      | `double`               | `Task<double>`              |
-| `float`     | `float`                | `Task<float>`               |
-| `double`    | `double`               | `Task<double>`              |
-| `decimal`   | `decimal`              | `Task<decimal>`             |
-| `int?`      | `double?`              | `Task<double?>`             |
-| `long?`     | `double?`              | `Task<double?>`             |
-| `float?`    | `float?`               | `Task<float?>`              |
-| `double?`   | `double?`              | `Task<double?>`             |
-| `decimal?`  | `decimal?`             | `Task<decimal?>`            |
+18-🔹  Distinct() Nedir?
 
-✅ 1. Koleksiyon (Memory) Üzerinde Kullanımı
+Bir listede aynı değeri birden fazla kez içeren kayıtlar varsa, Distinct() bu tekrarları kaldırır ve her değeri yalnızca bir kez döndürür.
 
-🔹 Basit sayı listesi:
-List<int> yaslar = new List<int> { 20, 30, 40 };
-double ortalama = yaslar.Average(); // Sonuç: 30.0
-🔹 Nesne listesi üzerinden:
-var ortalamaYas = customers.Average(c => c.Age);
+ Distinct() – Eleman Türü ve Dönüş Tipi Tablosu
 
-✅ 2. Entity Framework ile Kullanımı (EF Core)
-Veritabanındaki verilerin ortalamasını almak için AverageAsync() kullanılır:
-return await _appDbContext.Customers
-    .AverageAsync(c => c.Age);
+| Eleman Tipi                         | Örnek Kod                                 |
+|------------------------------------|--------------------------------------------|
+| `List<string>`                     | `list.Distinct()`                          |
+| `List<int>`                        | `list.Distinct()`                          |
+| `List<Customer>`                   | `list.Distinct()`                          |
+| `Customer -> FirstName`            | `list.Select(c => c.FirstName).Distinct()` |
+| `Customer -> {FirstName, LastName}`| `Select(...).Distinct()` (anonim tür)      |
+| `Customer` (Email’e göre)          | `list.DistinctBy(c => c.Email)` (.NET 6+)  |
 
-❗ Nullable Tiplerde Kullanım
-Eğer ortalaması alınacak alan nullable (int?, decimal?) ise Average() null değerleri otomatik olarak yok sayar.
-double ortalamaMaas = await _appDbContext.Customers
-    .AverageAsync(c => c.Salary); // Salary decimal? ise null'lar atlanır
-Ama yine de kontrol amaçlı c.Salary ?? 0 yazmak güvenli olabilir.
+---
 
-Şartlı Ortalama (Koşullu Kullanım)
- 
-     public async Task<decimal?> GetValueAsync()
+### 📘 Açıklamalar
+
+- `List<string>` → Aynı string’leri bir kez alır.
+- `List<int>` → Aynı sayılar bir kez alınır.
+- `List<Customer>` → `Equals()` ve `GetHashCode()` override edilmediyse işe yaramaz.
+- `Select(c => c.FirstName)` → Sadece isimleri seçip tekrar edenleri çıkarır.
+- `Select(c => new { ... })` → Aynı isim-soyisim çiftleri bir kez alınır.
+- `DistinctBy(c => c.Email)` (.NET 6+) → Email’e göre tekrarları temizler.
+
+---
+
+### 🎯 Dönüş Tipleri
+
+- `Distinct()` → `IEnumerable<T>` döner.
+- `ToList()` ile listeye çevrilir: `.ToList()` → `List<T>`
+
+
+Basit Örnek (String listesiyle)
+List<string> names = new List<string>
+{
+    "Ali", "Ayşe", "Ali", "Mehmet", "Ayşe"
+};
+
+var uniqueNames = names.Distinct().ToList();
+ Çıktı:
+ ["Ali", "Ayşe", "Mehmet"]
+ Distinct() aynı ismi tekrar etmeyen bir liste döndürdü.
+
+ 🔸 Customer Örneği
+ Varsayalım ki veritabanında şu müşteriler var:
+
+ | CustomerID | FirstName | LastName | Email                                       |
+| ---------- | --------- | -------- | ------------------------------------------- |
+| 1          | Ali       | Yılmaz   | [ali@mail.com](mailto:ali@mail.com)         |
+| 2          | Ayşe      | Demir    | [ayse@mail.com](mailto:ayse@mail.com)       |
+| 3          | Ali       | Koç      | [ali.koc@mail.com](mailto:ali.koc@mail.com) |
+| 4          | Mehmet    | Yıldız   | [mehmet@mail.com](mailto:mehmet@mail.com)   |
+Amaç: Aynı isme sahip müşterilerden sadece bir tane getirmek
+
+  public async Task<List<string?>> GetDistinctFirstNamesAsync()
         {
-            return (decimal?)await _appDbContext.Customers
-             .Where(c => c.City == "İstanbul")
-             .AverageAsync(c => c.Age);
+
+            return await _appDbContext.Customers
+                .Select(x => x.FirstName)
+                .Distinct()
+                .ToListAsync();
         }
-Sadece İstanbul’daki müşterilerin yaş ortalaması alınır.
+
+📌 Çıktı:
+["Ali", "Ayşe", "Mehmet"]
+Ali ismi iki müşteride geçiyor, ama Distinct sadece birini getirir (tekil değerler).
+
+🔸 Püf Nokta
+❗ Eğer Distinct() ile doğrudan nesne (Customer) üzerinden çalışırsan, tekrarları ayırt edemez. Çünkü Customer sınıfı bir class ve her biri bellekte farklı referansa sahip. Bu durumda Distinct() işe yaramaz.
+
+Yanlış Kullanım:
+public async Task<List<string?>> GetDistinctFirstNamesAsync()
+        {
+
+            return await _appDbContext.Customers
+                .Distinct()
+                .ToListAsync();
+        }
+
+💡 Bonus: .DistinctBy() (eğer .NET 6 veya üzerindeysen)
+DistinctBy() metodu, nesneleri bir property'e göre ayırt ederek tekil hale getirir.
+
+göre tekilleştirerek döndürmek:
+
+    public async Task<List<Customer>> GetDistinctFirstNamesAsync()
+        {
+
+            return await _appDbContext.Customers
+                  .DistinctBy(x => x.FirstName)
+                 .ToListAsync();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

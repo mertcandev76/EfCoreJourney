@@ -9,6 +9,7 @@
       "EfCoreJourney/1.0.0": {
         "dependencies": {
           "BusinessLayer": "1.0.0",
+          "DTOsLayer": "1.0.0",
           "DataAccessLayer": "1.0.0",
           "EntityLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
@@ -2535,6 +2536,7 @@
       },
       "BusinessLayer/1.0.0": {
         "dependencies": {
+          "DTOsLayer": "1.0.0",
           "DataAccessLayer": "1.0.0",
           "EntityLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
@@ -2546,12 +2548,18 @@
       },
       "DataAccessLayer/1.0.0": {
         "dependencies": {
+          "DTOsLayer": "1.0.0",
           "EntityLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0"
         },
         "runtime": {
           "DataAccessLayer.dll": {}
+        }
+      },
+      "DTOsLayer/1.0.0": {
+        "runtime": {
+          "DTOsLayer.dll": {}
         }
       },
       "EntityLayer/1.0.0": {
@@ -4180,6 +4188,11 @@
       "sha512": ""
     },
     "DataAccessLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTOsLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

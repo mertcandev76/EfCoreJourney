@@ -34,6 +34,12 @@ namespace EfCoreJourney.Controllers
             return View(model);                      
         }
 
+        public async Task<IActionResult> CustomerNames()
+        {
+            var names = await _customerDal.GetCustomerFullNamesAsync();
+            return View(names); // veya return Json(names);
+        }
+
         // Müşteri ekleme (GET)
         [HttpGet]
         public IActionResult AddCustomer()

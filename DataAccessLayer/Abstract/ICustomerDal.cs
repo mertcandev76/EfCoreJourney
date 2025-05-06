@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTOsLayer.DTOs;
 
 namespace DataAccessLayer.Abstract
 {
@@ -16,7 +17,10 @@ namespace DataAccessLayer.Abstract
         Task<bool> CustomerExistsAsync();
         Task<decimal?> GetValueAsync();
 
-         Task InsertAsync(Customer customer);
+        Task<List<CustomerNameDto>> GetCustomerFullNamesAsync();
+        Task<List<string?>> GetDistinctFirstNamesAsync();
+
+        Task InsertAsync(Customer customer);
 
         void Update(Customer customer);
 
