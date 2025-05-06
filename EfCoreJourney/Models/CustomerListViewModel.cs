@@ -15,5 +15,7 @@ namespace EfCoreJourney.Models
 
         // Müşteri var mı? (bool)
         public bool IsCustomerExist { get; set; }
+        // Müşterilerin yaş toplamı(Sum)
+        public decimal? TotalCustomerSum { get; set; }
     }
 }

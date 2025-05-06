@@ -36,6 +36,11 @@ namespace DataAccessLayer.EntityFramework
         {
             return await _appDbContext.Customers.AnyAsync(x=>x.FirstName=="Cabbar");
         }
+        public async Task<decimal?> GetValueAsync()
+        {
+            return await _appDbContext.Customers.SumAsync(c => c.Age ?? 0);
+        }
+
         public async Task InsertAsync(Customer customer)
         {
             await _appDbContext.Customers.AddAsync(customer);
@@ -56,5 +61,7 @@ namespace DataAccessLayer.EntityFramework
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

@@ -21,13 +21,15 @@ namespace EfCoreJourney.Controllers
             var singleCustomer = await _customerDal.GetSingleCustomerOperationAsync();
             var customerCount = await _customerDal.GetCustomerStatisticsAsync();
             var exist = await _customerDal.CustomerExistsAsync();
+            var customerSum = await _customerDal.GetValueAsync();
 
             var model = new CustomerListViewModel
             {
                 Customers = customers,
                 RepresentativeCustomer=singleCustomer,
                 TotalCustomerCount=customerCount,
-                IsCustomerExist=exist
+                IsCustomerExist=exist,
+                TotalCustomerSum=customerSum
             };
             return View(model);                      
         }

@@ -1,61 +1,99 @@
-﻿5-🔹Find() Nedir?
-Find() metodu, bir koleksiyondan (genellikle bir List<T>) ilk eşleşen öğeyi döner. Bu metot, koleksiyon üzerinde doğrulama yapmak ve tek bir öğe döndürmek için kullanılır.
+﻿11-🔹Min() Nedir?
 
-Eğer koleksiyon belirli bir şarta uyan bir öğe içeriyorsa, ilk bulunan öğeyi döner.
-Eğer koleksiyon şarta uyan hiç öğe içermiyorsa, null (referans tiplerinde) döner.
+bir koleksiyondaki en küçük değeri almak için kullanılır. Bu fonksiyon, genellikle sayısal veya sıralanabilir (comparable) veri türleriyle çalışır. Min() fonksiyonu, bir koleksiyon üzerinde çalışırken, sıralanabilir veri türlerinin en küçük değerini döndüren bir işlem gerçekleştirir.
 
-Önemli: Find() yalnızca List<T> koleksiyonlarıyla çalışır. Diğer koleksiyonlar (örneğin diziler veya IEnumerable<T>) için LINQ metodları kullanılabilir.
+Kullanım Örneği:
+Aşağıdaki örnekte, Customer tablosundaki en küçük Age (Yaş) değerini almak için Min() fonksiyonu kullanılmaktadır:
 
-Verilen metoda bakalım:
-public async Task<Customer> GetAll()
+public async Task<int?> GetMinAgeAsync()
 {
-    throw new NotImplementedException();
+    var minAge = await _context.Customers
+                                .Where(c => c.Age.HasValue) // Null olmayan yaşları al
+                                .MinAsync(c => c.Age);      // En küçük yaşı al
+    return minAge;
 }
-Bu metodun imzası şunu söylüyor:
-👉 "Bir Customer nesnesi döneceğim ve bu işlem asenkron olacak."
+Açıklamalar:
 
-Şimdi, Find() Bu Yapıda Nasıl Kullanılır?
+Where(c => c.Age.HasValue) filtresi, null olmayan yaş değerlerini almak için kullanılır.
+MinAsync(c => c.Age) ise bu değerler arasında en küçük olanı döndürür.
 
-1. Eğer bir List<Customer> üzerinde çalışıyorsan:
+12-🔹 Max() Fonksiyonu
+Max() fonksiyonu, bir koleksiyondaki en büyük değeri almak için kullanılır. Min() fonksiyonunun zıttı olarak, en yüksek değeri döndürür. Bu fonksiyon da sıralanabilir veri türleri üzerinde çalışır.
 
-public async Task<Customer> GetAll()
+Kullanım Örneği:
+Aşağıdaki örnekte, Customer tablosundaki en büyük Age (Yaş) değerini almak için Max() fonksiyonu kullanılmaktadır:
+
+public async Task<int?> GetMaxAgeAsync()
 {
-    List<Customer> customers = new List<Customer>
-    {
-        new Customer { Id = 1, Name = "Ali" },
-        new Customer { Id = 2, Name = "Veli" }
-    };
-
-    var result = customers.Find(c => c.Id == 1);
-    return await Task.FromResult(result);
+    var maxAge = await _context.Customers
+                                .Where(c => c.Age.HasValue) // Null olmayan yaşları al
+                                .MaxAsync(c => c.Age);      // En büyük yaşı al
+    return maxAge;
 }
+Açıklamalar:
 
-Yukarıda, Find() doğrudan bir liste üzerinde kullanıldı. Asenkron metodun içine Task.FromResult(...) ile sarıldı.
+Where(c => c.Age.HasValue) filtresi, null olmayan yaş değerlerini almak için yine kullanılır.
+MaxAsync(c => c.Age) fonksiyonu, bu değerler arasında en büyük olanı döndürür. 
 
-2. Ama sen EF Core kullanıyorsan (yani AppDbContext.Customers gibi bir DbSet ile çalışıyorsan), Find() yerine FindAsync() kullanmalısın.
 
-public async Task<Customer> GetAll()
-{
-    return await _appDbContext.Customers.FindAsync(1); // sadece ID ile çalışır
-}
 
-Dikkat: FindAsync() sadece primary key (örneğin ID) ile çalışır.
-Eğer Email gibi bir alanla aramak istiyorsan, FirstOrDefaultAsync() veya SingleOrDefaultAsync() kullanman gerekir:
-return await _appDbContext.Customers
-    .FirstOrDefaultAsync(c => c.Email == "abc@gmail.com");
+Min() ve Max() Kullanırken Dikkat Edilmesi Gerekenler
 
-❌ FindAsync() EF Core içinde .Customers.FindAsync(...) olarak yazılmaz
+Min() fonksiyon üzerinden anlatalım:
 
-return await _appDbContext.Customers.FindAsync(c => c.Id == 1); // ❌ Bu çalışmaz!
+1. Nullable Değerler ve null Kontrolü
+Min() fonksiyonu nullable türlerle çalışırken bazı özel durumlar yaratabilir. Eğer koleksiyon null değeri içeren öğelere sahipse, bu değerler göz ardı edilir, ancak yine de dikkat edilmesi gereken bazı noktalar vardır.
 
-Çünkü DbSet sınıfı bunu desteklemez. Bunun yerine:
+Öneri:
+Null Değerlerin Göz Ardı Edilmesi: Min() fonksiyonu, nullable türlerde (örneğin int?, decimal?, DateTime?) null değerleri görmezden gelir. Bu yüzden veritabanındaki bazı değerler null olabilir. Eğer null değerler göz önünde bulundurulmak isteniyorsa, önce Where() ile null değerlerin filtrelenmesi önerilir.
 
-FindAsync(id)
-FirstOrDefaultAsync(...)
-SingleOrDefaultAsync(...)
-kullanılır.
+// Nullable olmayanları filtreleyerek min yaş alır
+var minAge = _context.Customers
+                     .Where(c => c.Age.HasValue) // Null olmayan yaşlar
+                     .MinAsync(c => c.Age);
 
- Sonuç
-List<Customer> gibi listelerde → Find(...)
-DbContext (EF Core) içinde → FindAsync(), ama sadece ID için
-Diğer alanlara göre arama yapacaksan → FirstOrDefaultAsync(...) veya SingleOrDefaultAsync(...)
+2. Boş Koleksiyonlar ve InvalidOperationException
+Eğer koleksiyon boşsa, Min() fonksiyonu bir InvalidOperationException hatası fırlatır. Bu, özellikle veritabanı sorgularında önemli bir noktadır, çünkü bazen veritabanı boş olabilir veya sorgu, hiç veri döndürmeyebilir.
+
+
+✅ Min() ve Max() – Eleman Türü ve Dönüş Tipi Tablosu
+
+| Koleksiyondaki Eleman Türü | `Min()` Dönüş Tipi | `Max()` Dönüş Tipi | `MinAsync()` Dönüş Tipi | `MaxAsync()` Dönüş Tipi | Açıklama                                       |
+| -------------------------- | ------------------ | ------------------ | ----------------------- | ----------------------- | ---------------------------------------------- |
+| `int`                      | `int`              | `int`              | `Task<int>`             | `Task<int>`             | Sayısal veriler için                           |
+| `long`                     | `long`             | `long`             | `Task<long>`            | `Task<long>`            | Büyük sayılar için                             |
+| `float`                    | `float`            | `float`            | `Task<float>`           | `Task<float>`           | Ondalık sayılar                                |
+| `double`                   | `double`           | `double`           | `Task<double>`          | `Task<double>`          | Yüksek hassasiyetli ondalıklı veriler          |
+| `decimal`                  | `decimal`          | `decimal`          | `Task<decimal>`         | `Task<decimal>`         | Finansal ve hassas veriler için                |
+| `DateTime`                 | `DateTime`         | `DateTime`         | `Task<DateTime>`        | `Task<DateTime>`        | Tarih verileri için                            |
+| `DateTimeOffset`           | `DateTimeOffset`   | `DateTimeOffset`   | `Task<DateTimeOffset>`  | `Task<DateTimeOffset>`  | Zaman dilimi bilgisiyle tarih                  |
+| `TimeSpan`                 | `TimeSpan`         | `TimeSpan`         | `Task<TimeSpan>`        | `Task<TimeSpan>`        | Zaman farkları                                 |
+| `Guid`                     | `Guid`             | `Guid`             | `Task<Guid>`            | `Task<Guid>`            | Benzersiz kimlikler                            |
+| `string`                   | `string`           | `string`           | `Task<string>`          | `Task<string>`          | Alfabetik sıralama                             |
+| `nullable int?`            | `int?`             | `int?`             | `Task<int?>`            | `Task<int?>`            | Nullable sayılar                               |
+| `nullable long?`           | `long?`            | `long?`            | `Task<long?>`           | `Task<long?>`           | Nullable büyük sayılar                         |
+| `nullable float?`          | `float?`           | `float?`           | `Task<float?>`          | `Task<float?>`          | Nullable ondalıklı sayılar                     |
+| `nullable double?`         | `double?`          | `double?`          | `Task<double?>`         | `Task<double?>`         | Nullable yüksek hassasiyetli ondalıklı veriler |
+| `nullable decimal?`        | `decimal?`         | `decimal?`         | `Task<decimal?>`        | `Task<decimal?>`        | Nullable finansal veriler                      |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

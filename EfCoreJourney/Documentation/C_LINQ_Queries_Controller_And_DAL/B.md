@@ -1,61 +1,89 @@
-﻿Element - Tekli Veri Getiren Sorgulama Fonksiyonları
+﻿1. Nullable ve Nullable Olmayan Değerlerle Filtreleme Yaparken 
+ORM sorgularında HasValue veya GetValueOrDefault() gibi fonksiyonlar, aslında genellikle veritabanındaki null değerleri kontrol ederken kullanılabilir, ancak bu metodları kullanmak çoğu zaman gereksizdir. ORM'ler bu kontrolleri derleyici seviyesinde optimize eder ve SQL sorguları veritabanı üzerinde çalışırken nullable değerler için doğru sorguyu oluşturur.
 
-🔸 Örnek Sınıf
+Öğretici Örnekler:
 
-public class Customer {
+Örnek 1:
 
-[Key]
-public int CustomerID { get; set; }
-public string Name { get; set; }
-public string Email { get; set; }
-public string Phone { get; set; }
-public bool IsActive { get; set; }
-
-}
-
-Task<Customer> GetAll();  // Asenkron metodun dönüş tipi tekil
-Task<List<Customer>> GetAll(); //Asenkron metodun dönüş tipi çoğul
-
-yani biz tekil halde işlem yapacağımızdan Asenkron metodun dönüş tipi tekil işlemini seçiyoruz.
+-->Bu kullanım doğrudur
+public int? Age { get; set; }
 
 
-örnek:
+var customers = _appDbContext.Customers
+    .Where(c => c.Age != null) // null olmayan yaşları filtreleyebilirsiniz
+    .ToList();
+Burada, Age nullable olduğu için, ORM otomatik olarak SQL'de IS NOT NULL sorgusunu oluşturur.(c.Age != null: Age değeri null olmayan müşterileri filtreler.)
+Örnek 2:
 
-        public async Task<Customer> GetAll()
-        {
+-->Bu kullanım doğrudur
+public int? Age { get; set; }
 
-            return await _appDbContext.Customers.FirstAsync();
-        }
-        
- Not!!!       
-Oluştuduğumuz view sayfası bu durumda değişir unutma!!
+var customers = _appDbContext.Customers
+    .Where(c => c.Age == null) // null olan yaşları filtreleyebilirsiniz
+    .ToList();
+(c.Age == null: Age değeri null olan müşterileri filtreler.)
 
- @model EntityLayer.Concrete.Customer //tekil
+Örnek 3:
 
-@{
-    ViewData["Title"] = "Müşteri Listesi";
-}
+-->Bu kullanım yanlıştır çünkü
 
-<h1>@ViewData["Title"]</h1>
+public int Age { get; set; }
+var customers = _appDbContext.Customers
+    .Where(c => c.Age == null) // Bu yanlış olur çünkü Age null olamaz.
+    .ToList();
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Ad</th>
-            <th>Email</th>
-            <th>Telefon</th>
-        </tr>
-    </thead>
-    <tbody>
-    //forach döngüsü olmaz tekil olduğu için 
-        <tr>
-            <td>@Model.Name</td>
-            <td>@Model.Email</td>
-            <td>@Model.Phone</td>
-        </tr>
-       
-    </tbody>
-</table>
+Burada, Age nullable olmayan bir int türünde tanımlanmış. Yani, Age değeri her zaman geçerli bir tam sayı olmalıdır ve null olamaz. Bu durumda, Age == null ifadesi hata verir çünkü Age nullable olmadığı için null değerini kabul etmez.
+
+
+Örnek 4:
+
+-->Bu kullanım yanlıştır çünkü
+
+public int Age { get; set; }
+var customers = _appDbContext.Customers
+    .Where(c => c.Age != null) // Bu yanlış olur çünkü Age null olamaz.
+    .ToList();
+
+Age bir int türü olduğu için null olamaz. Bu nedenle, Age != null koşulunu kullanmak anlamlı değildir.
+Age her zaman bir sayısal değere (tam sayıya) sahip olmalıdır. Yani, null kontrolü yapmak mümkün değildir.
+
+
+şimdi yukarıdaki öğretici örnekleri anladığımıza göre iki tane örnek yapalım:
+
+
+Pekiştirmeli Örnekler
+
+public int? Age { get; set; }
+
+Örnek 1:
+
+Yaşı 20'den küçük olanları ve null olanları almak
+return await _appDbContext.Customers
+    .Where(c => c.Age < 20 || c.Age == null) // Yaşı 20'den küçük ve null olanları filtreler
+    .ToListAsync();
+
+
+Örnek 2:
+Yaşı 20'den küçük olanları ve null olmayan olanları almak
+
+1.adım     
+.Where(c => c.Age < 20 || c.Age != null) // Yaşı 20'den küçük ve null olmayanları filtreler
+    .ToListAsync();
+
+2.adım
+.Where(c => c.Age < 20) // Yaşı 20'den küçük ve null olmayanları filtreler
+    .ToListAsync();
+
+1.adım gereksiz kod yazımı olmuştur çünkü  Zaten Age > 20 demek, Age != null anlamına da gelir (null bir değerle > karşılaştırması yapılamaz).
+
+
+
+
+
+
+
+
+
 
 
 

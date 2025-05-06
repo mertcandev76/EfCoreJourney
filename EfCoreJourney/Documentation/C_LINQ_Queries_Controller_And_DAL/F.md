@@ -1,19 +1,53 @@
-﻿4-🔹SingleOrDefault() Nedir?
-SingleOrDefault() metodu, koleksiyonda tam olarak bir (ve yalnızca bir) öğe varsa onu döner.
+﻿10-🔹Average() Nedir?
 
-Eğer:
-Hiç öğe yoksa → default değerini döner (null referans tiplerde).
-Birden fazla öğe varsa → InvalidOperationException fırlatır.
+LINQ’in agregat (toplayıcı) metotlarından biri olan Average, sayısal türdeki bir property'sinin ortalamasını hesaplar ve hem bellek içindeki koleksiyonlarda hem de veritabanı sorgularında kullanılabilir.
 
-Şartsız Kullanım:
-Tüm listede sadece bir kayıt varmı?:
- return await _appDbContext.Customers.SingleAsync();
+Açıklama: Koleksiyondaki öğelerin ortalamasını döndürür.
+Dönüş Tipi: double
+Asenkron Versiyon: AverageAsync()
+Dönüş Tipi: Task<double>
+Kullanım: Koleksiyondaki öğelerin ortalamasını asenkron olarak döndürür.
 
- Şartlı Arama:
- Customers tablosunda isim bilgisi sadece "Hasan" olan 1 müşteri varmı?
-  return await _appDbContext.Customers.SingleAsync(e => e.Name == "Hasan");
+Average() Eleman Türü ve Dönüş Tipi Tablosu
 
-🧠 Ne Zaman Kullanılır?
-Koleksiyonda tam olarak 1 öğe olmasını garanti edemiyorsan ama eğer yoksa güvenli bir şekilde işlem yapmak istiyorsan, SingleOrDefault() kullanılır.
+| Eleman Türü | `Average()` Dönüş Tipi | `AverageAsync()` Dönüş Tipi |
+| ----------- | ---------------------- | --------------------------- |
+| `int`       | `double`               | `Task<double>`              |
+| `long`      | `double`               | `Task<double>`              |
+| `float`     | `float`                | `Task<float>`               |
+| `double`    | `double`               | `Task<double>`              |
+| `decimal`   | `decimal`              | `Task<decimal>`             |
+| `int?`      | `double?`              | `Task<double?>`             |
+| `long?`     | `double?`              | `Task<double?>`             |
+| `float?`    | `float?`               | `Task<float?>`              |
+| `double?`   | `double?`              | `Task<double?>`             |
+| `decimal?`  | `decimal?`             | `Task<decimal?>`            |
 
-Eğer 0 veya 1 öğe dönecekse, ancak 2+ öğe olması beklenmeyen durum ise.
+✅ 1. Koleksiyon (Memory) Üzerinde Kullanımı
+
+🔹 Basit sayı listesi:
+List<int> yaslar = new List<int> { 20, 30, 40 };
+double ortalama = yaslar.Average(); // Sonuç: 30.0
+🔹 Nesne listesi üzerinden:
+var ortalamaYas = customers.Average(c => c.Age);
+
+✅ 2. Entity Framework ile Kullanımı (EF Core)
+Veritabanındaki verilerin ortalamasını almak için AverageAsync() kullanılır:
+return await _appDbContext.Customers
+    .AverageAsync(c => c.Age);
+
+❗ Nullable Tiplerde Kullanım
+Eğer ortalaması alınacak alan nullable (int?, decimal?) ise Average() null değerleri otomatik olarak yok sayar.
+double ortalamaMaas = await _appDbContext.Customers
+    .AverageAsync(c => c.Salary); // Salary decimal? ise null'lar atlanır
+Ama yine de kontrol amaçlı c.Salary ?? 0 yazmak güvenli olabilir.
+
+Şartlı Ortalama (Koşullu Kullanım)
+ 
+     public async Task<decimal?> GetValueAsync()
+        {
+            return (decimal?)await _appDbContext.Customers
+             .Where(c => c.City == "İstanbul")
+             .AverageAsync(c => c.Age);
+        }
+Sadece İstanbul’daki müşterilerin yaş ortalaması alınır.

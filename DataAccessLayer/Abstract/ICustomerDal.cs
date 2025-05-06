@@ -14,6 +14,7 @@ namespace DataAccessLayer.Abstract
         Task<Customer> GetSingleCustomerOperationAsync();
         Task<int> GetCustomerStatisticsAsync();
         Task<bool> CustomerExistsAsync();
+        Task<decimal?> GetValueAsync();
 
          Task InsertAsync(Customer customer);
 

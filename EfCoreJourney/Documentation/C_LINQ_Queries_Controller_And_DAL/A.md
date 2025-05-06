@@ -1,54 +1,47 @@
-﻿🔍 Veritabanı İşlemleri (EF Core):
+﻿Nullable ve Nullable Olmayan Tipler
 
-🔧 Metodun İmzası:
+Nullable Nedir?
+ bir değişkenin null (boş) bir değer alabilmesi durumudur. Bu terim, özellikle değer türleri (value types) ile ilgili kullanılır. C# gibi dillerde, değer türleri varsayılan olarak null değeri almazlar, ancak nullable türler, bu türlerin null almasını sağlayan bir özellik sunar.
 
-🧩 1. Task<List<Customer>> GetAll();
-✅ Ne yapar?
-Tüm müşteri listesini getirir.
+1-Nullable Olmayan Tipler(Null değil)
+Nullable olmayan tipler, değerlerinin her zaman bir şeyler olması gereken veri türleridir. Örneğin, int, bool, string gibi temel veri türleri. Bu türler için bir değişken oluşturduğunuzda, her zaman geçerli bir değer olmalıdır; aksi takdirde, hatalarla karşılaşabilirsiniz.
 
-💡 Dönüş Tipi:
-Task<List<Customer>> → Asenkron olarak List<Customer> döner.
-Task burada, metodun asenkron olduğunu gösterir. await ile çalışır.
+public class Customer
+{
+    [Key]
+    public int CustomerID { get; set; } // Nullable olmayan bir tip (int)
+    public string FirstName { get; set; } // Nullable olmayan bir tip (string)
+    public string LastName { get; set; } // Nullable olmayan bir tip (string)
+    public int Age { get; set; } // Nullable olmayan bir tip (int)
+    public string Email { get; set; } // Nullable olmayan bir tip (string)
+    public string Phone { get; set; } // Nullable olmayan bir tip (string)
+    public string Address { get; set; } // Nullable olmayan bir tip (string)
+    public bool IsActive { get; set; } // Nullable olmayan bir tip (bool)
+}
+Burada, Customer sınıfındaki çoğu özellik, nullable olmayan tipler olarak tanımlanmıştır. Örneğin, CustomerID bir int olduğu için her zaman bir sayı değeri (örneğin 0 veya başka bir sayı) almalıdır. FirstName, LastName, Email, Phone, Address gibi string türündeki özellikler ise boş bir değer (null) alamaz.
 
+2-Nullable Tipler(Null)
+Nullable tipler, bir türün değerinin null olabilmesine olanak tanır. Nullable tipler için C#’ta ? işareti kullanılır. Yani, bir değerin hem geçerli bir değer alabileceği hem de null olabileceği durumlar için nullable türler kullanılır. Örneğin, int?, bool?, DateTime? gibi tipler nullable’dır.
 
+public class Customer
+{
+    [Key]
+    public int CustomerID { get; set; } // Nullable olmayan bir tip
+    public string FirstName { get; set; } // Nullable olmayan bir tip
+    public string LastName { get; set; } // Nullable olmayan bir tip
+    public int? Age { get; set; } // Nullable olan bir tip (int?)
+    public string Email { get; set; } // Nullable olmayan bir tip
+    public string Phone { get; set; } // Nullable olmayan bir tip
+    public string Address { get; set; } // Nullable olmayan bir tip
+    public bool IsActive { get; set; } // Nullable olmayan bir tip
+}
+Bu örnekte, Age özelliği int? (nullable int) türünde tanımlanmış. Bu, Age değerinin null olabileceği anlamına gelir. Yani, bir müşteri kaydı için Age belirtilmemişse, bu özellik null olarak kabul edilebilir.
 
-🧩 2. Task<Customer> GetSingleCustomerOperationAsync();
-✅ Ne yapar?
-Tek bir müşteri getirir. Genellikle FirstOrDefault() ya da SingleOrDefault() gibi sorgularla kullanılır.
+Nullable ve Nullable Olmayan Tipler Arasındaki Farklar
 
-💡 Ne zaman kullanılır?
-Temsilci müşteri,
-Son eklenen müşteri,
-Belirli bir kurala uyan tek müşteri gerekiyorsa.
+Değer Atama: Nullable olmayan tipler, her zaman geçerli bir değer almalıdır. Nullable tipler ise hem geçerli bir değer alabilir hem de null olabilir.
 
-💡 Dönüş Tipi:
-Task<Customer> → Asenkron olarak bir Customer nesnesi döner.
+Veri Tabanı: ORM (Object-Relational Mapping) sistemlerinde (örneğin Entity Framework) nullable olmayan tipler için veri tabanındaki alanlar "NOT NULL" olarak tanımlanırken, nullable tipler için "NULL" değeri kabul edilebilir.
 
+Kullanım Durumu: Nullable tipler, örneğin bir veri kaydının değeri eksik olduğunda, bilinmediğinde veya geçici olarak atanmadığında kullanılır. Nullable olmayan tipler, her zaman geçerli bir değer gerektirir.
 
-
-🧩 3. Task<int> GetCustomerStatisticsAsync();
-✅ Ne yapar?
-Toplam müşteri sayısını getirir.
-
-💡 Ne zaman kullanılır?
-Dashboard istatistikleri,
-Raporlar,Sayfa üstü bilgi panelleri gibi yerlerde.
-
-💡 Dönüş Tipi:
-Task<int> → Asenkron olarak bir sayı döner.
-
-🧩 4. Task<bool> CustomerExistsAsync();
-✅ Ne yapar?
-Belirli bir müşterinin veritabanında olup olmadığını kontrol eder.
-
-💡 Ne zaman kullanılır?
-Belirli bir ada sahip müşteri var mı?
-Kayıt öncesi kontrol (aynı müşteri zaten kayıtlı mı?)
-Butonlar, uyarılar, yönlendirmeler
-
-💡 Dönüş Tipi:
-Task<bool> → Asenkron olarak true ya da false döner.
-
-
-🧩 4. Task<string>, Task<decimal>,Task<double>,Task<Dictionary<TKey, TValue>>,Task<IEnumerable<T>>,Task<IQueryable<T>>
-asenkron şekilde veri türünde sonuç dönen işlemler ilerleyen derste işlenecek
