@@ -1,0 +1,323 @@
+﻿@model EfCoreJourney.Models.Customer_Conversion_and_Filtering_List_View_Model
+@{
+    ViewData["Title"] = "Müşteri Listeleme ve Filtreleme İşlemleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<h2>Tüm Müşteriler</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.AllCustomers)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Age</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Address</td>
+                <td>@item.IsActive</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<h2>Filtreleme İşlemi</h2>
+<br />
+
+<h4>Aktif  Müşteriler</h4>
+<table class="table">
+   <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Aktif Mi?</th>
+        </tr>
+   </thead>
+   <tbody>
+        @foreach (var customer in Model.ActiveCustomers)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.IsActive</td>
+            </tr>
+        }
+   </tbody>
+</table>
+
+<h4>Pasif  Müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Pasif Mi?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.InactiveCustomers)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.IsActive</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+   <h4>Yaşı 30 dan büyük olanlar</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersOlderThan30)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4>Telefon numarası olanlar</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Telefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithPhone)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Telefon numarası boş olan müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Telefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithoutPhone)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4>İsmi Ali olan müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersNamedAli)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4> A harfi ile başlayan  müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersStartsWith)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4> Yaşı null olmayan  müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithAge)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4> Yaşı null olan  müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithNullAge)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h4> Yaşı 25'ten küçük ve aktif olanlar</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.ActiveYoungCustomers)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+                <td>@customer.IsActive</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h4> Soyadı 4 karakterden uzun olanlar</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithLongLastName)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4> Yaşı 19, 24 veya 31 olan müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithSpecificAges)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4> Email uzantısı "gmail.com" olmayan müşteriler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>G-Mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.CustomersWithoutGmailComEmail)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

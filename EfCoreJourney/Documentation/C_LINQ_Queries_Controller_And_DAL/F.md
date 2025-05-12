@@ -12,7 +12,7 @@ Bunlar matematikteki küme işlemlerinin programlamadaki karşılığıdır. LIN
 | `Intersect()` | Kesişim                | İki koleksiyonda da ortak olan öğeleri getirir.            |
 | `Except()`    | Fark                   | Bir koleksiyonda olup, diğerinde olmayan öğeleri döndürür. |
 
-18-🔹  Distinct() Nedir?
+18-🔹  Distinct() 
 
 Bir listede aynı değeri birden fazla kez içeren kayıtlar varsa, Distinct() bu tekrarları kaldırır ve her değeri yalnızca bir kez döndürür.
 

@@ -21,6 +21,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // 🔥 Burada ICustomerDal bağlanıyor
 builder.Services.AddScoped<ICustomerDal, EfCustomerRepository>();
 
+builder.Services.AddScoped<ICustomerConversion_and_Filtering_Dal, EfCustomerConversion_and_Filtering_Repository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

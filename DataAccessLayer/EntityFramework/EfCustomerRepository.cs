@@ -57,10 +57,6 @@ namespace DataAccessLayer.EntityFramework
                 .Select(x => x.FirstName)
                 .Distinct()
                 .ToListAsync();
-      //      return await _appDbContext.Customers
-      //.Select(c => c.FirstName)
-      //.Distinct()
-      //.ToListAsync();
         }
         public async Task InsertAsync(Customer customer)
         {
