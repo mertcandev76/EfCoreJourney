@@ -1,0 +1,178 @@
+﻿@model EfCoreJourney.Models.Customer_GroupBy_View_Model
+@{
+    ViewData["Title"] = "Müşteri Listeleme ve Gruplama İşlemleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<h2>Tüm Müşteriler</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.AllCustomers)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Age</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Address</td>
+                <td>@item.IsActive</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<h2>Gruplama İşlemi</h2>
+<br />
+<h2>Yaşa Göre Müşteri Gruplama</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Yaş</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.GroupByAge)
+        {
+            <tr>
+                <td>@item.Age</td>
+                <td>@item.Count</td>
+              
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<br />
+
+<h2>Aktifliğe Göre Müşteri Gruplama</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Aktif mi?</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GroupByIsActive)
+        {
+            <tr>
+                <td>@item.IsActive ? "Evet" : "Hayır"</td>
+                <td>@item.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+
+
+<h2>Email Boş mu Dolu mu?</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Email Durumu</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GroupByEmailStatus)
+        {
+            <tr>
+                <td>
+                    @if (item.EmailStatus.GetValueOrDefault()) // null ise false kabul eder
+                    {
+                        <span style="color:red">Boş</span>
+                    }
+                    else
+                    {
+                        <span style="color:green">Dolu</span>
+                    }
+                </td>
+                <td>@item.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+<h2>🧑‍🤝‍🧑 Yaş Grubuna Göre Müşteri Listesi</h2>
+
+@foreach (var grup in Model.GroupByAgeGroup)
+{
+    <div class="card mb-3 p-3 border rounded shadow-sm">
+        <h4>@grup.Grup Grubu</h4>
+        <ul>
+            @foreach (var customer in grup.Customers)
+            {
+                <li>@customer.FirstName @customer.LastName - (@customer.Age ?? 0 yaş)</li>
+            }
+        </ul>
+    </div>
+}
+
+<br />
+
+<h2>📊 Yaş Grubuna Göre Müşteri Sayıları</h2>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Yaş Grubu</th>
+            <th>Müşteri Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grup in Model.CustomerCountByAgeGroup)
+        {
+            <tr>
+                <td>@grup.Grup</td>
+                <td>@grup.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<h2>Şehir Tahmini (Adresin Son Kelimesine Göre)</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Şehir (Tahmini)</th>
+            <th>Müşteri Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GroupByCityFromAddress)
+        {
+            <tr>
+                <td>@item.City</td>
+                <td>@item.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

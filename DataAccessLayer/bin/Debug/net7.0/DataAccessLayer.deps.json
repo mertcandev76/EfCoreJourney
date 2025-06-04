@@ -674,6 +674,9 @@
         }
       },
       "DTOsLayer/1.0.0": {
+        "dependencies": {
+          "EntityLayer": "1.0.0"
+        },
         "runtime": {
           "DTOsLayer.dll": {}
         }

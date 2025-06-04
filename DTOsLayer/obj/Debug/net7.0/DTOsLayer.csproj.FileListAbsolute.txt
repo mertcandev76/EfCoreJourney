@@ -10,3 +10,6 @@ C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\obj
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\obj\Debug\net7.0\refint\DTOsLayer.dll
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\obj\Debug\net7.0\DTOsLayer.pdb
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\obj\Debug\net7.0\ref\DTOsLayer.dll
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\bin\Debug\net7.0\EntityLayer.dll
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\bin\Debug\net7.0\EntityLayer.pdb
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DTOsLayer\obj\Debug\net7.0\DTOsLayer.csproj.CopyComplete

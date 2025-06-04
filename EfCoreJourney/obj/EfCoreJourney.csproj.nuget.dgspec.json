@@ -213,7 +213,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\EntityLayer\\EntityLayer.csproj": {
+                "projectPath": "C:\\Users\\adsiz\\OneDrive\\Masaüstü\\CoreEfCoreJourney\\EfCoreJourney\\EntityLayer\\EntityLayer.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

@@ -1152,6 +1152,9 @@
       "DTOsLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "EntityLayer": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DTOsLayer.dll": {}
         },
