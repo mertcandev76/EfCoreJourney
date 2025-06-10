@@ -10,6 +10,6 @@ namespace DTOsLayer.DTOs.CustomerGroupByDto
     public  class GroupByAgeGroupDto
     {
         public string Grup { get; set; } = string.Empty; // Genç, Orta, Yaşlı
-        public List<Customer> Customers { get; set; } = new(); // Grup içindeki müşteriler
+        public List<OrderCustomer> Customers { get; set; } = new(); // Grup içindeki müşteriler
     }
 }

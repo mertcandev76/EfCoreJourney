@@ -1,6 +1,5 @@
-﻿using DataAccessLayer.Abstract;
+﻿
 using DataAccessLayer.Concrete;
-using DataAccessLayer.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
@@ -19,12 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // 🔥 Burada ICustomerDal bağlanıyor
-builder.Services.AddScoped<ICustomerDal, EfCustomerRepository>();
 
-builder.Services.AddScoped<ICustomerConversion_and_Filtering_Dal, EfCustomerConversion_and_Filtering_Repository>();
-
-builder.Services.AddScoped<ICustomerProjection_Dal, EfCustomerProjection_Repository>();
-builder.Services.AddScoped<ICustomerGroupBy_Dal, EfCustomerGroupBy_Repository>();
 
 
 var app = builder.Build();

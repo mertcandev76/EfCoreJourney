@@ -5,7 +5,7 @@ namespace EfCoreJourney.Models
 {
     public class Customer_GroupBy_View_Model
     {
-        public List<Customer> AllCustomers { get; set; }
+        public List<OrderCustomer> AllCustomers { get; set; }
         public List<GroupByAgeDto> GroupByAge { get; set; }
         public List<GroupByIsActiveDto> GroupByIsActive { get; set; }
         public List<GroupByEmailStatusDto> GroupByEmailStatus { get; set; }

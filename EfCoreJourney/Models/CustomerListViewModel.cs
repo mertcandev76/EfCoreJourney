@@ -5,10 +5,10 @@ namespace EfCoreJourney.Models
     public class CustomerListViewModel
     {
         // Tüm müşterilerin listesi
-        public List<Customer> Customers { get; set; }
+        public List<OrderCustomer> Customers { get; set; }
 
         // First/Single gibi sorgularla alınan tek müşteri örneği
-        public Customer RepresentativeCustomer { get; set; }
+        public OrderCustomer RepresentativeCustomer { get; set; }
 
         // Müşteri sayısı (Count)
         public int TotalCustomerCount { get; set; }

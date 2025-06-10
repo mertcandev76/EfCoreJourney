@@ -6,7 +6,7 @@ namespace EfCoreJourney.Models
     public class Customer_Projection_List_View_Model
     {
         //Tüm müşterileri liste olarak getir
-        public List<Customer> Customers { get; set; }
+        public List<OrderCustomer> Customers { get; set; }
 
         // Tüm müşterilerin ad ve soyadını almak
         public List<CustomerNameDto> CustomerFullNames { get; set; }

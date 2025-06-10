@@ -22,13 +22,45 @@ namespace DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EntityLayer.Concrete.Customer", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
                 {
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
+
+                    b.Property<int?>("OrderCustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ShippingAddress")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal?>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("OrderCustomerID");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.OrderCustomer", b =>
+                {
+                    b.Property<int>("OrderCustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderCustomerID"));
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -40,20 +72,36 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerID");
+                    b.HasKey("OrderCustomerID");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.OrderCustomer", "OrderCustomer")
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderCustomerID");
+
+                    b.Navigation("OrderCustomer");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.OrderCustomer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
