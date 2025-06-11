@@ -1,5 +1,7 @@
 ﻿
+using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
@@ -9,13 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Dependency Injection(Manuel) 
+builder.Services.AddScoped<ILogStaticRepository,LogStaticRepository>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
 
-// Connection String'i oku
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// AppDbContext'i servise ekle
+//AppDbContext'i servise ekle(Manuel)
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+{
+    //Connection String'i oku(Manuel)
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+
 
 // 🔥 Burada ICustomerDal bağlanıyor
 
