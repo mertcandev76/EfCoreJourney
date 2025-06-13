@@ -2,7 +2,9 @@ C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLay
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.runtimeconfig.json
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.dll
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DataAccessLayer.pdb
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DTOsLayer.dll
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\EntityLayer.dll
+C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DTOsLayer.pdb
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\EntityLayer.pdb
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.csproj.AssemblyReference.cache
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
@@ -15,5 +17,3 @@ C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLay
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.pdb
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\obj\Debug\net7.0\DataAccessLayer.genruntimeconfig.cache
 C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\obj\Debug\net7.0\ref\DataAccessLayer.dll
-C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DTOsLayer.dll
-C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\DataAccessLayer\bin\Debug\net7.0\DTOsLayer.pdb

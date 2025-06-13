@@ -30,8 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Documentation\G_StaticCRUD_With_Controller_And_DAL\D_Update\" />
-    <Folder Include="Documentation\G_StaticCRUD_With_Controller_And_DAL\E_Delete\" />
+    <Folder Include="Documentation\F_StaticCRUD_With_Controller_And_DAL\D_Update\" />
+    <Folder Include="Documentation\F_StaticCRUD_With_Controller_And_DAL\E_Delete\" />
   </ItemGroup>
 
 </Project>

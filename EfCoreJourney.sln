@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOsLayer", "DTOsLayer\DTOsLayer.csproj", "{B86A07AC-3892-47C6-B924-B308472B4AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCoreJourney.API", "EfCoreJourney.API\EfCoreJourney.API.csproj", "{B143AEED-F6E6-4C9E-B4DF-23F4FFF00DE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreJourney.API", "CoreJourney.API\CoreJourney.API.csproj", "{F52A56F5-0AC8-4234-B6D0-4F2C35F802C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{B86A07AC-3892-47C6-B924-B308472B4AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86A07AC-3892-47C6-B924-B308472B4AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86A07AC-3892-47C6-B924-B308472B4AA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B143AEED-F6E6-4C9E-B4DF-23F4FFF00DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B143AEED-F6E6-4C9E-B4DF-23F4FFF00DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B143AEED-F6E6-4C9E-B4DF-23F4FFF00DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B143AEED-F6E6-4C9E-B4DF-23F4FFF00DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52A56F5-0AC8-4234-B6D0-4F2C35F802C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52A56F5-0AC8-4234-B6D0-4F2C35F802C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52A56F5-0AC8-4234-B6D0-4F2C35F802C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52A56F5-0AC8-4234-B6D0-4F2C35F802C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

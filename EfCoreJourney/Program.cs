@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
@@ -10,24 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-//Dependency Injection(Manuel) 
-builder.Services.AddScoped<ILogStaticRepository,LogStaticRepository>();
-builder.Services.AddScoped<ILogRepository, LogRepository>();
-
-//AppDbContext'i servise ekle(Manuel)
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    //Connection String'i oku(Manuel)
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-
-
-
-
-// 🔥 Burada ICustomerDal bağlanıyor
-
-
 
 var app = builder.Build();
 
@@ -51,7 +34,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+app.MapControllerRoute(         
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
