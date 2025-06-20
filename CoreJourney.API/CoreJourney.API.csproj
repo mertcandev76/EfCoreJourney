@@ -28,4 +28,13 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Documentation\G_API_With_APIController_And_DAL\" />
+    <Folder Include="Documentation\H_StaticCRUD_With_APIController_And_DAL\A_List\" />
+    <Folder Include="Documentation\H_StaticCRUD_With_APIController_And_DAL\B_StaticID\" />
+    <Folder Include="Documentation\H_StaticCRUD_With_APIController_And_DAL\C_Create\" />
+    <Folder Include="Documentation\H_StaticCRUD_With_APIController_And_DAL\D_Update\" />
+    <Folder Include="Documentation\H_StaticCRUD_With_APIController_And_DAL\E_Delete\" />
+  </ItemGroup>
+
 </Project>

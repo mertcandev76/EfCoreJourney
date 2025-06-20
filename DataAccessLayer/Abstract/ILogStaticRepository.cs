@@ -9,10 +9,10 @@ namespace DataAccessLayer.Abstract
 {
     public interface ILogStaticRepository
     {
-        Task<List<Log>> GetAllStaticLogsAsync();
-        Task<Log?> GetStaticLogByIdAsync(); // Static id
-        Task AddStaticLogAsync(); //Static Ekleme
-        Task UpdateStaticLogAsync(); //Static Güncelleme
-        Task DeleteStaticLogAsync(); //  Statik Silme
+        Task<List<Log>> GetAllAsync();
+        Task<Log?> GetByIdAsync(); // Static id
+        Task AddAsync(); //Static Ekleme
+        Task UpdateAsync(); //Static Güncelleme
+        Task DeleteAsync(); //  Statik Silme
     }
 }

@@ -16,10 +16,11 @@ namespace EntityLayer.Concrete
         public DateTime? LogDate { get; set; }
 
         [StringLength(100)]
-        public string? LogLevel { get; set; } // Info, Error, Warning
+        public string? LogLevel { get; set; }
 
         public string? Message { get; set; }
-
         public string? Details { get; set; }
+        public string? Source { get; set; }
+        public string? User { get; set; }
     }
 }

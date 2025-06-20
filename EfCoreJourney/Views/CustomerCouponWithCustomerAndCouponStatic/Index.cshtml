@@ -1,0 +1,52 @@
+﻿@model List<EntityLayer.Concrete.CustomerCoupon>
+@{
+    ViewData["Title"] = "Müşteri Kuponları Listesi";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+
+<br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<div class="d-flex gap-2 mb-3">
+    <a class="btn btn-success" href="/CustomerCouponWithCustomerAndCouponStatic/AddCustomerCoupon">Ekle</a>
+    <a class="btn btn-warning" href="/CustomerCouponWithCustomerAndCouponStatic/UpdateCustomerCoupon">Güncelle</a>
+    <a class="btn btn-danger" href="/CustomerCouponWithCustomerAndCouponStatic/DeleteCustomerCoupon">Sil</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad-Soyad</th>
+            <th>Yaş</th>
+            <th>Adres</th>
+            <th>Kod</th>
+            <th>Geçerlilik Başlangıç ​​Tarihi</th>
+            <th>Geçerlilik Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customerCoupon in Model)
+        {
+            <tr>
+                <td>@customerCoupon.CustomerCouponID</td>
+                <td>@customerCoupon.Customer?.FullName</td>
+                <td>@customerCoupon.Customer?.Age</td>
+                <td>@customerCoupon.Customer?.Address</td>
+                <td>@customerCoupon.Coupon?.Code</td>
+                <td>@customerCoupon.Coupon?.ValidFrom</td>
+                <td>@customerCoupon.Coupon?.ValidUntil</td>
+           
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

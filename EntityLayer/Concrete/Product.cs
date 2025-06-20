@@ -12,19 +12,18 @@ namespace EntityLayer.Concrete
         [Key]
         public int ProductID { get; set; }
 
-        [StringLength(100)]
-        public string? ProductName { get; set; }
+        [Required, StringLength(100)]
+        public string Name { get; set; } = null!;
 
-        public decimal? Price { get; set; }
-
-        [StringLength(250)]
         public string? Description { get; set; }
+        public decimal Price { get; set; }
+        public int Stock { get; set; }
+        public bool IsActive { get; set; }
 
-        public int? Stock { get; set; }
+        public int ProductBrandID { get; set; }
+        public ProductBrand? ProductBrand { get; set; }
 
-        public bool? IsActive { get; set; }
-
-        // Navigation Property
-        public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<VendorProduct>? VendorProducts { get; set; }
     }
 }

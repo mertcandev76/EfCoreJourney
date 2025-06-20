@@ -1,0 +1,44 @@
+﻿@model List<EntityLayer.Concrete.VendorProduct>
+@{
+    ViewData["Title"] = "Tedarikçi Ürünleri Listesi";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+
+<br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<div class="d-flex gap-2 mb-3">
+    <a class="btn btn-success" href="/VendorProductWithProductAndProductVendorStatic/AddVendorProduct">Ekle</a>
+    <a class="btn btn-danger" href="/VendorProductWithProductAndProductVendorStatic/DeleteVendorProduct">Sil</a>
+    <a class="btn btn-warning" href="/VendorProductWithProductAndProductVendorStatic/UpdateVendorProduct">Güncelle</a>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün İsmi</th>
+            <th>Ürün Açıklaması</th>
+            <th>Firma Adı</th>
+            <th>İlgili Kişi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vendorProduct in Model)
+        {
+            <tr>
+                <td>@vendorProduct.VendorProductID</td>
+                <td>@vendorProduct.Product?.Name</td>
+                <td>@vendorProduct.Product?.Description</td>
+                <td>@vendorProduct.ProductVendor?.CompanyName</td>
+                <td>@vendorProduct.ProductVendor?.ContactPerson</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

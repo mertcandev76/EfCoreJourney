@@ -1,0 +1,50 @@
+﻿@model List<EntityLayer.Concrete.Product>
+@{
+    ViewData["Title"] = "Ürün Listesi";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<div class="d-flex gap-2 mb-3">
+    <a class="btn btn-success" href="/ProductsWithProductBrandStatic/AddProduct">Ekle</a>
+    <a class="btn btn-warning" href="/ProductsWithProductBrandStatic/UpdateProduct">Güncelle</a>
+    <a class="btn btn-danger" href="/ProductsWithProductBrandStatic/DeleteProduct">Sil</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Açıklaması</th>
+            <th>Ürün Fiyatı </th>
+            <th>Ürün Stok</th>
+            <th>Aktiv mi?</th>
+            <th>Marka Adı</th>
+            <th>Açıklama</th>
+            <th>Ülke Markası</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductID</td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.Stock</td>
+                <td>@product.IsActive</td>
+                <td>@product.ProductBrand?.Name</td>
+                <td>@product.ProductBrand?.Description</td>
+                <td>@product.ProductBrand?.Country</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

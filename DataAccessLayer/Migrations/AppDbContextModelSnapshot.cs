@@ -22,6 +22,96 @@ namespace DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EntityLayer.Concrete.Coupon", b =>
+                {
+                    b.Property<int>("CouponID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CouponID"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("DiscountRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ValidUntil")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CouponID");
+
+                    b.ToTable("Coupons");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Customer", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RegisteredDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.CustomerCoupon", b =>
+                {
+                    b.Property<int>("CustomerCouponID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerCouponID"));
+
+                    b.Property<int>("CouponID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RedeemedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CustomerCouponID");
+
+                    b.HasIndex("CouponID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("CustomerCoupons");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Log", b =>
                 {
                     b.Property<int>("LogID")
@@ -43,9 +133,15 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Source")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("LogID");
 
-                    b.ToTable("Logs");
+                    b.ToTable("Logs", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
@@ -56,64 +152,26 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
-                    b.Property<int?>("OrderCustomerID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("OrderDate")
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PaymentMethod")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ShippingAddress")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderID");
 
-                    b.HasIndex("OrderCustomerID");
+                    b.HasIndex("CustomerID");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.OrderCustomer", b =>
-                {
-                    b.Property<int>("OrderCustomerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderCustomerID"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OrderCustomerID");
-
-                    b.ToTable("OrderCustomers");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.OrderDetail", b =>
@@ -124,10 +182,16 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailID"));
 
-                    b.Property<int?>("OrderID")
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductID")
+                    b.Property<int>("ProductID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -138,39 +202,70 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("OrderDetailID");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductID");
 
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Payment", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.OrderPayment", b =>
                 {
-                    b.Property<int>("PaymentID")
+                    b.Property<int>("OrderPaymentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderPaymentID"));
 
-                    b.Property<decimal?>("Amount")
+                    b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Method")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("OrderID")
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PaymentID");
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("OrderID");
+                    b.HasKey("OrderPaymentID");
 
-                    b.ToTable("Payments");
+                    b.HasIndex("OrderID")
+                        .IsUnique();
+
+                    b.ToTable("OrderPayments");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.OrderShipment", b =>
+                {
+                    b.Property<int>("OrderShipmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderShipmentID"));
+
+                    b.Property<string>("Carrier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeliveredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ShippedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TrackingNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderShipmentID");
+
+                    b.HasIndex("OrderID")
+                        .IsUnique();
+
+                    b.ToTable("OrderShipments");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
@@ -182,108 +277,296 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductID"));
 
                     b.Property<string>("Description")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductName")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Stock")
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductBrandID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("ProductID");
 
+                    b.HasIndex("ProductBrandID");
+
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Shipment", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.ProductBrand", b =>
                 {
-                    b.Property<int>("ShipmentID")
+                    b.Property<int>("ProductBrandID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShipmentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductBrandID"));
 
-                    b.Property<int?>("OrderID")
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductBrandID");
+
+                    b.ToTable("ProductBrands");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.ProductVendor", b =>
+                {
+                    b.Property<int>("ProductVendorID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ShipmentDate")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductVendorID"));
 
-                    b.Property<string>("ShipperName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TrackingNumber")
+                    b.Property<string>("ContactPerson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ShipmentID");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("OrderID");
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Shipments");
+                    b.HasKey("ProductVendorID");
+
+                    b.ToTable("ProductVendors");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Store", b =>
+                {
+                    b.Property<int>("StoreID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StoreID"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StoreID");
+
+                    b.ToTable("Stores");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.StoreSetting", b =>
+                {
+                    b.Property<int>("StoreSettingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StoreSettingID"));
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EnableNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StoreSettingID");
+
+                    b.HasIndex("StoreId")
+                        .IsUnique();
+
+                    b.ToTable("StoreSettings");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.VendorProduct", b =>
+                {
+                    b.Property<int>("VendorProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorProductID"));
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductVendorID")
+                        .HasColumnType("int");
+
+                    b.HasKey("VendorProductID");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("ProductVendorID");
+
+                    b.ToTable("VendorProducts");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.CustomerCoupon", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Coupon", "Coupon")
+                        .WithMany("CustomerCoupons")
+                        .HasForeignKey("CouponID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Customer", "Customer")
+                        .WithMany("CustomerCoupons")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coupon");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.OrderCustomer", "OrderCustomer")
+                    b.HasOne("EntityLayer.Concrete.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("OrderCustomerID");
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OrderCustomer");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.OrderDetail", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID");
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.Product", "Product")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ProductID");
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Payment", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.OrderPayment", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID");
-
-                    b.Navigation("Order");
+                    b.HasOne("EntityLayer.Concrete.Order", null)
+                        .WithOne("OrderPayment")
+                        .HasForeignKey("EntityLayer.Concrete.OrderPayment", "OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Shipment", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.OrderShipment", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID");
-
-                    b.Navigation("Order");
+                    b.HasOne("EntityLayer.Concrete.Order", null)
+                        .WithOne("OrderShipment")
+                        .HasForeignKey("EntityLayer.Concrete.OrderShipment", "OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.OrderCustomer", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
+                    b.HasOne("EntityLayer.Concrete.ProductBrand", "ProductBrand")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductBrandID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductBrand");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.StoreSetting", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Store", "Store")
+                        .WithOne("StoreSetting")
+                        .HasForeignKey("EntityLayer.Concrete.StoreSetting", "StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.VendorProduct", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Product", "Product")
+                        .WithMany("VendorProducts")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.ProductVendor", "ProductVendor")
+                        .WithMany()
+                        .HasForeignKey("ProductVendorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ProductVendor");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Coupon", b =>
+                {
+                    b.Navigation("CustomerCoupons");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Customer", b =>
+                {
+                    b.Navigation("CustomerCoupons");
+
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+
+                    b.Navigation("OrderPayment");
+
+                    b.Navigation("OrderShipment");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("VendorProducts");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.ProductBrand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Store", b =>
+                {
+                    b.Navigation("StoreSetting");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,51 @@
+﻿@model List<EntityLayer.Concrete.Log>
+@{
+    ViewData["Title"] = "Kayıt Listeleme Sayfası";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+
+<br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+<div class="d-flex gap-2 mb-3">
+    <a class="btn btn-success" href="/LogStatic/AddLog">Ekle</a>
+    <a class="btn btn-warning" href="/LogStatic/UpdateLog">Güncelle</a>
+    <a class="btn btn-danger" href="/LogStatic/DeleteLog">Sil</a>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kayıt Tarihi</th>
+            <th>Kayıt Seviyesi</th>
+            <th>Mesaj</th>
+            <th>Detaylar</th>
+            <th>Kullanıcı</th>
+            <th>Kaynak</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@log.LogID</td>
+                <td>@log.LogDate</td>
+                <td>@log.LogLevel</td>
+                <td>@log.Message</td>
+                <td>@log.Details</td>
+                <td>@log.User</td>
+                <td>@log.Source</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

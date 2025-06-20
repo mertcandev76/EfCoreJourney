@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Documentation\I_RelationalEntities\A.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -30,8 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Documentation\F_StaticCRUD_With_Controller_And_DAL\D_Update\" />
-    <Folder Include="Documentation\F_StaticCRUD_With_Controller_And_DAL\E_Delete\" />
+    <Folder Include="Documentation\I_RelationalEntities\A_OneToOneBidirectional\" />
+    <Folder Include="Documentation\I_RelationalEntities\B_OneToManyBidirectional\" />
+    <Folder Include="Documentation\I_RelationalEntities\C_ManyToManyBidirectional\" />
+    <Folder Include="Documentation\I_RelationalEntities\D_OneToOneUnidirectional\" />
+    <Folder Include="Documentation\I_RelationalEntities\E_OneToManyUnidirectional\" />
+    <Folder Include="Documentation\I_RelationalEntities\F_ManyToManyUnidirectional\" />
   </ItemGroup>
 
 </Project>

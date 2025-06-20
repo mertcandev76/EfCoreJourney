@@ -21,48 +21,50 @@ namespace DataAccessLayer.Repositories
 
       
 
-        public async Task<List<Log>> GetAllStaticLogsAsync()
+        public async Task<List<Log>> GetAllAsync()
         {
             return await _appDbContext.Logs.ToListAsync();
         }
 
-        public async Task<Log?> GetStaticLogByIdAsync()
+        public async Task<Log?> GetByIdAsync()
         {
-            int staticID = 4;
+            int staticID = 1;
             return await _appDbContext.Logs.FindAsync(staticID);
         }
 
-        public async Task AddStaticLogAsync()
+        public async Task AddAsync()
         {
             var log = new Log
             {
                 LogDate = DateTime.Now,
                 LogLevel = "INFO",
-                Message = "Günlük Temizlenme Tamamlandı",
-                Details = "7 günden yeni log kayıtları eklendi."
+                Message = "Log temizleme işlemi başarıyla tamamlandı.",
+                Details = "Sistemdeki 7 günden eski log kayıtları silindi ve yeni log kayıtları eklendi.",
+                Source = "LogCleanerService",
+                User = "SystemAdmin"
             }; 
             await _appDbContext.Logs.AddAsync(log);
             await _appDbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateStaticLogAsync()
+        public async Task UpdateAsync()
         {
-            int staticID = 11;
+            int staticID = 1;
             var log = await _appDbContext.Logs.FindAsync(staticID);
             if (log != null)
             {
                 log.LogDate = DateTime.Now;
                 log.LogLevel = "WARNING";
-                log.Message = "Log güncellendi.";
-                log.Details = "Statik ID ile güncelleme yapıldı.";
+                log.Message = "Log kaydı güncellendi.";
+                log.Details = "Belirli bir statik ID üzerinden log kaydında güncelleme işlemi gerçekleştirildi.";
 
                 await _appDbContext.SaveChangesAsync();
             }
         }
 
-        public async Task DeleteStaticLogAsync()
+        public async Task DeleteAsync()
         {
-            int staticID = 11; // Silmek istediğin sabit ID
+            int staticID = 1; // Silmek istediğin sabit ID
             var log = await _appDbContext.Logs.FindAsync(staticID);
             if (log != null)
             {

@@ -1,0 +1,45 @@
+﻿@model List<EntityLayer.Concrete.Store>
+@{
+    ViewData["Title"] = "Mağaza Listesi";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+
+<br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<div class="d-flex gap-2 mb-3">
+    <a href="/StoreWithStoreSettingStatic/AddStore" class="btn btn-success">Ekle</a>
+    <a href="/StoreWithStoreSettingStatic/UpdateStore" class="btn btn-warning">Güncelle</a>
+    <a href="/StoreWithStoreSettingStatic/DeleteStore" class="btn btn-danger">Sil</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mağaza Adı</th>
+            <th>Sahibi</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <th>@store.StoreID</th>
+                <td>@store.Name</td>
+                <td>@store.OwnerName</td>
+                <td>@store.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

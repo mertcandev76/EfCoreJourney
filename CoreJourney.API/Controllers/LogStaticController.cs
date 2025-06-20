@@ -19,13 +19,13 @@ namespace CoreJourney.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Log>>> GetAllStaticLogs()
         {
-            var logs= await _logStaticRepository.GetAllStaticLogsAsync();
+            var logs= await _logStaticRepository.GetAllAsync();
             return Ok(logs);
         }
         [HttpGet("static-log")]
         public async Task<ActionResult<Log?>> GetStaticLogById()
         {
-             var logs = await _logStaticRepository.GetStaticLogByIdAsync();
+             var logs = await _logStaticRepository.GetByIdAsync();
             if (logs==null)
                   return NotFound("Static ID ile kayıt bulunamadı.");// staticID = 4
             
@@ -36,7 +36,7 @@ namespace CoreJourney.API.Controllers
         {
             try
             {
-                await _logStaticRepository.AddStaticLogAsync();
+                await _logStaticRepository.AddAsync();
                 return Ok("Static Log Başarıyla Eklendi");
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace CoreJourney.API.Controllers
         [HttpPut("update-static-log")]
         public async Task<IActionResult> UpdateStaticLog()
         {
-            await _logStaticRepository.UpdateStaticLogAsync();
+            await _logStaticRepository.UpdateAsync();
             try
             {
                 return Ok("Static Log Başarıyla Güncellendi");
@@ -62,7 +62,7 @@ namespace CoreJourney.API.Controllers
         [HttpDelete("delete-static-log")]
         public async Task<IActionResult> DeleteStaticLog()
         {
-            await _logStaticRepository.DeleteStaticLogAsync();  
+            await _logStaticRepository.DeleteAsync();  
             try
             {
                 return Ok("Static Log Başarıyla Silindi");
