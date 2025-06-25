@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.Order
+@{
+    ViewData["Title"] = "Yeni Sipariş Ekle";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Müşteri</label>
+        <select asp-for="CustomerID" class="form-control" asp-items="ViewBag.Customers">
+            <option value="">Müşteri seçin</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Sipariş Tarihi</label>
+        <input asp-for="OrderDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Toplam Tutar</label>
+        <input asp-for="TotalAmount" type="number" class="form-control" placeholder="Tutar ₺" step="0.01" />
+    </div>
+
+    <div class="form-group">
+        <label>Durum</label>
+        <input asp-for="Status" class="form-control" placeholder="Durum: Pending / Shipped / Delivered / Cancelled" />
+    </div>
+
+    <div class="form-group">
+        <label>Not</label>
+        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Ek açıklamalar..."></textarea>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </div>
+ 
+</form>
+

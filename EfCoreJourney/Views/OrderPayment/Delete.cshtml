@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.OrderPayment
+@{
+    ViewData["Title"] = "Ödeme Sil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-danger">
+    <strong>@Model.Order?.Notes</strong> siparişine ait bu ödemeyi silmek istediğinize emin misiniz?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Tutar</dt>
+    <dd class="col-sm-9">@Model.Amount</dd>
+
+    <dt class="col-sm-3">Yöntem</dt>
+    <dd class="col-sm-9">@Model.PaymentMethod</dd>
+
+    <dt class="col-sm-3">Tarih</dt>
+    <dd class="col-sm-9">@Model.PaymentDate?.ToShortDateString()</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="OrderPaymentID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+

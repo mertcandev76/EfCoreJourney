@@ -17,5 +17,6 @@ namespace EntityLayer.Concrete
         public DateTime? ShippedDate { get; set; }
         public DateTime? DeliveredDate { get; set; }
         public int OrderID { get; set; }
+        public Order? Order { get; set; }
     }
 }

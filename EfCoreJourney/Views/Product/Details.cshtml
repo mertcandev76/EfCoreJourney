@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "Ürün Detayı";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün Adı</th>
+        <td>@Model.Name ?? "<em>ürün adı bulunamadı</em>"</td>
+    </tr>
+    <tr>
+        <th>Ürün Açıklama</th>
+        <td>@Model.Description ?? "<em>açıklama bulunamadı</em>"</td>
+    </tr>
+     <tr>
+        <th>Fiyat</th>
+        <td>@Model.Price ?? "<em>fiyat bulunamadı</em>"</td>
+    </tr>
+     <tr>
+        <th>Stok</th>
+        <td>@Model.Stock ?? "<em>stok bulunamadı</em>"</td>
+    </tr>
+    <tr>
+        <th>Aktiv mi?</th>
+        <td>@(Model.IsActive ? "Evet" : "Hayır")</td>
+    </tr>
+    <tr>
+        <th>Marka İsmi</th>
+        <td>@Model.ProductBrand?.Name ?? "<em>Marka bulunamadı</em>"</td>
+    </tr>
+    <tr>
+        <th>Marka Açıklama</th>
+       <td>@Model.ProductBrand?.Description ?? "<em>Marka Açıklama bulunamadı</em>"</td>
+    </tr>
+    <tr>
+        <th>Ülke Marka</th>
+       <td>@Model.ProductBrand?.Country ?? "<em>Ülke bulunamadı</em>"</td>
+    </tr>
+      <tr>
+        <th>Kategori İsmi</th>
+       <td>@Model.Category?.Name ?? "<em>Kategori bulunamadı</em>"</td>
+    </tr>
+        <tr>
+        <th>Kategori Açıklama</th>
+       <td>@Model.Category?.Description ?? "<em>Kategori Açıklama bulunamadı</em>"</td>
+    </tr>
+</table>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+
+

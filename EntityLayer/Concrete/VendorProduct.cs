@@ -17,5 +17,8 @@ namespace EntityLayer.Concrete
 
         public int ProductVendorID { get; set; } // foreign key
         public ProductVendor? ProductVendor { get; set; }
+        public decimal SupplyPrice { get; set; }
+        public DateTime? SuppliedDate { get; set; }
+
     }
 }

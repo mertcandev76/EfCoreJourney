@@ -1,0 +1,40 @@
+﻿@model List<EntityLayer.Concrete.ProductBrand>
+@{
+    ViewData["Title"] = "Ürün Markaları Listesi";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success">Ekle</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün Marka Adı</th>
+            <th>Açıklama</th>
+            <th>Ülke</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productBrand in Model)
+        {
+            <tr>
+                <td>@productBrand.ProductBrandID</td>
+                <td>@productBrand.Name</td>
+                <td>@productBrand.Description</td>
+                <td>@productBrand.Country</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@productBrand.ProductBrandID" class="btn btn-info btn btn-sm">Detaylar</a>
+                    <a asp-action="Edit" asp-route-id="@productBrand.ProductBrandID" class="btn btn-warning btn btn-sm">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@productBrand.ProductBrandID" class="btn btn-danger btn btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

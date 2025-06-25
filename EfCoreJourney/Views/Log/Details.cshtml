@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Concrete.Log
+@{
+    ViewData["Title"] = "Kayır Detayları";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table">
+    <tr><th>ID</th><td>@Model.LogID</td></tr>
+    <tr><th>Tarih</th><td>@Model.LogDate</td></tr>
+    <tr><th>Seviye</th><td>@Model.LogLevel</td></tr>
+    <tr><th>Mesaj</th><td>@Model.Message</td></tr>
+    <tr><th>Detay</th><td>@Model.Details</td></tr>
+    <tr><th>Kaynak</th><td>@Model.Source</td></tr>
+    <tr><th>Kullanıcı</th><td>@Model.User</td></tr>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+

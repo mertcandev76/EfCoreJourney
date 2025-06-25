@@ -16,5 +16,6 @@ namespace EntityLayer.Concrete
         public string? PaymentMethod { get; set; }
         public DateTime? PaymentDate { get; set; }
         public int OrderID { get; set; }
+        public Order? Order { get; set; }
     }
 }

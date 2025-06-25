@@ -1,0 +1,36 @@
+﻿@model List<EntityLayer.Concrete.Order>
+@{
+    ViewData["Title"] = "Sipariş Listesi";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Yeni Sipariş</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Müşteri</th>
+            <th>Tarih</th>
+            <th>Tutar</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Customer?.FullName</td>
+                <td>@order.OrderDate.ToString("dd.MM.yyyy")</td>
+                <td>@order.TotalAmount ₺</td>
+                <td>@order.Status</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@order.OrderID" class="btn btn-warning btn-sm">Düzenle</a>
+                    <a asp-action="Details" asp-route-id="@order.OrderID" class="btn btn-info btn-sm">Detay</a>
+                    <a asp-action="Delete" asp-route-id="@order.OrderID" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

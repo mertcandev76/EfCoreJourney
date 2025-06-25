@@ -1,4 +1,6 @@
 ﻿
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
@@ -17,22 +19,39 @@ builder.Services.AddControllersWithViews();
 
 //Dependency Injection(Manuel) 
 
-builder.Services.AddScoped<ICustomerWithOrdersStaticRepository, CustomerWithOrdersStaticRepository>();
 
-builder.Services.AddScoped<IStoreSettingWithStoreStaticRepository, StoreSettingWithStoreStaticRepository>();
-builder.Services.AddScoped<IStoreWithStoreSettingStaticRepository, StoreWithStoreSettingStaticRepository>();
-builder.Services.AddScoped<IOrderShipmentWithOrderStaticRepository, OrderShipmentWithOrderStaticRepository>();
-builder.Services.AddScoped<IOrderPaymentWithOrderStaticRepository, OrderPaymentWithOrderStaticRepository>();
-builder.Services.AddScoped<IOrderDetailWithOrderAndProductStaticRepository, OrderDetailWithOrderAndProductStaticRepository>();
-builder.Services.AddScoped<IOrderWithCustomerStaticRepository, OrderWithCustomerStaticRepository>();
-builder.Services.AddScoped<ICustomerCouponWithCustomerAndCouponStaticRepository, CustomerCouponWithCustomerAndCouponStaticRepository>();
-builder.Services.AddScoped<ICustomerStaticRepository,CustomerStaticRepository>();
-builder.Services.AddScoped<ICouponStaticRepository, CouponStaticRepository>();
-builder.Services.AddScoped<IVendorProductWithProductAndProductVendorStaticRepository, VendorProductWithProductAndProductVendorStaticRepository>();
-builder.Services.AddScoped<IProductWithProductBrandStaticRepository, ProductWithProductBrandStaticRepository>();
-builder.Services.AddScoped<IProductVendorStaticRepository,ProductVendorStaticRepository>();
-builder.Services.AddScoped<IProductBrandStaticRepository, ProductBrandStaticRepository>();
-builder.Services.AddScoped<ILogStaticRepository, LogStaticRepository>();
+// Generic yapı bağımlılıklarını tanımla
+
+builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
+builder.Services.AddScoped<IOrderDetailRepository, EfOrderDetailRepository>();
+
+builder.Services.AddScoped<IOrderPaymentService, OrderPaymentManager>();
+builder.Services.AddScoped<IOrderPaymentRepository, EfOrderPaymentRepository>();
+
+builder.Services.AddScoped<IOrderShipmentService, OrderShipmentManager>();
+builder.Services.AddScoped<IOrderShipmentRepository, EfOrderShipmentRepository>();
+
+builder.Services.AddScoped<IOrderService, OrderManager>();
+builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+
+builder.Services.AddScoped<ICustomerCouponService, CustomerCouponManager>();
+builder.Services.AddScoped<ICustomerCouponRepository, EfCustomerCouponRepository>();
+
+builder.Services.AddScoped<IVendorProductService, VendorProductManager>();
+builder.Services.AddScoped<IVendorProductRepository, EfVendorProductRepository>();
+
+builder.Services.AddScoped<IProductService,ProductManager>();
+builder.Services.AddScoped<IProductRepository,EfProductRepository>();
+
+builder.Services.AddScoped<IStoreSettingService, StoreSettingManager>();
+builder.Services.AddScoped<IStoreSettingRepository, EfStoreSettingRepository>();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
+
+
+
+
 
 
 //AppDbContext'i servise ekle(Manuel)

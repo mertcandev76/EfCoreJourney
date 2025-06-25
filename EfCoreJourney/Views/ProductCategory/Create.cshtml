@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.ProductCategory
+@{
+    ViewData["Title"] = "Kategori Ekleme Sayfası";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label">Kategori Adı</label>
+        <input asp-for="Name" class="form-control" placeholder="Örn: Giyim" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Description" class="form-label">Açıklama</label>
+        <input asp-for="Description" class="form-control" placeholder="Örn: Kadın, erkek ve çocuk giyim ürünleri" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-success">Ekle</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </div>
+
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+

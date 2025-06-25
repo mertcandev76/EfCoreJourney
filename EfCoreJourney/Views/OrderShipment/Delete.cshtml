@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.OrderShipment
+@{
+    ViewData["Title"] = "Kargo Sil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>@Model.Carrier</strong> firmasına ait kargo bilgisini silmek istediğinize emin misiniz?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Takip No</dt>
+    <dd class="col-sm-9">@Model.TrackingNumber</dd>
+
+    <dt class="col-sm-3">Sipariş Notu</dt>
+    <dd class="col-sm-9">@Model.Order?.Notes</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="OrderShipmentID" />
+    <button type="submit" class="btn btn-danger">Evet, Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
+

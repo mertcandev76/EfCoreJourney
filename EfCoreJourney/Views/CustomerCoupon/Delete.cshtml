@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.CustomerCoupon
+@{
+    ViewData["Title"] = "Müşteri Kuponu Sil";
+}
+
+<div class="alert alert-warning">
+    Bu müşteri kuponu kaydını silmek istediğinize emin misiniz?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Müşteri</dt>
+    <dd class="col-sm-9">@Model.Customer?.FullName</dd>
+
+    <dt class="col-sm-3">Kupon</dt>
+    <dd class="col-sm-9">@Model.Coupon?.Code</dd>
+
+    <dt class="col-sm-3">Kullanım Tarihi</dt>
+    <dd class="col-sm-9">@Model.RedeemedAt?.ToString("dd.MM.yyyy")</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="CustomerCouponID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
+

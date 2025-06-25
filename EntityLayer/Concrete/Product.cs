@@ -22,6 +22,8 @@ namespace EntityLayer.Concrete
 
         public int ProductBrandID { get; set; }
         public ProductBrand? ProductBrand { get; set; }
+        public int ProductCategoryID { get; set; }
+        public ProductCategory? Category { get; set; }
 
         public ICollection<OrderDetail>? OrderDetails { get; set; }
         public ICollection<VendorProduct>? VendorProducts { get; set; }

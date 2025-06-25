@@ -1,0 +1,54 @@
+﻿@model List<EntityLayer.Concrete.StoreSetting>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success">Yeni Ayar Ekle</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Para Birimi</th>
+            <th>Dil</th>
+            <th>Bildirim Durumu</th>
+            <th>Bağlı Mağaza</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.StoreSettingID</td>
+                    <td>@item.Currency</td>
+                    <td>@item.Language</td>
+                    <td>
+                        @(item.EnableNotifications ? "Açık" : "Kapalı")
+                    </td>
+                    <td>
+                        @(item.Store != null ? item.Store.Name : Html.Raw("<em>Mağaza bulunamadı</em>"))
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.StoreSettingID" class="btn btn-info btn-sm">Detay</a>
+                        <a asp-action="Edit" asp-route-id="@item.StoreSettingID" class="btn btn-warning btn-sm">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.StoreSettingID" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-danger">Kayıt bulunamadı.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.CustomerCoupon
+@{
+    ViewData["Title"] = "Yeni Müşteri Kuponu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Müşteri</label>
+        <select asp-for="CustomerID" class="form-control" asp-items="ViewBag.Customers">
+            <option value="">Müşteri seçin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kupon</label>
+        <select asp-for="CouponID" class="form-control" asp-items="ViewBag.Coupons">
+            <option value="">Kupon seçin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kullanım Tarihi</label>
+        <input asp-for="RedeemedAt" type="date" class="form-control" placeholder="Kullanım tarihi" />
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+    </div>
+
+</form>
+

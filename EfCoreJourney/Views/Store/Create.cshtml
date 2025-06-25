@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.Store
+@{
+    ViewData["Title"] = "Yeni Mağaza Ekle";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Mağaza Adı</label>
+        <input asp-for="Name" class="form-control" type="text" placeholder="Mağaza adını giriniz." />
+    </div>
+    <div class="form-group">
+        <label asp-for="OwnerName" class="control-label">Mağaza Sahibinin Adı</label>
+        <input asp-for="OwnerName" class="form-control" type="text" placeholder="Mağaza sahibinin adını giriniz." />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">E-Mail</label>
+        <input asp-for="Email" class="form-control" type="email" placeholder="E-mail giriniz." />
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-success">Ekle</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </div>
+        
+
+</form>
+

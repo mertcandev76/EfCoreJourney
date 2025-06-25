@@ -1,0 +1,55 @@
+﻿@model List<EntityLayer.Concrete.VendorProduct>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success">Ekle</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tedarik Fiyatı</th>
+            <th>Tedarik Tarihi</th>
+            <th>Bağlı Ürün Adı</th>
+            <th>Bağlı Satıcı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.VendorProductID</td>
+                    <td>@item.SupplyPrice</td>
+                    <td>@item.SuppliedDate</td>
+                    <td>
+                        @(item.Product != null ? item.Product.Name : Html.Raw("<em>Ürün bulunamadı</em>"))
+                    </td>
+                    <td>
+                        @(item.ProductVendor != null ? item.ProductVendor.CompanyName : Html.Raw("<em>Satıcı bulunamadı</em>"))
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.VendorProductID" class="btn btn-info btn-sm">Detay</a>
+                        <a asp-action="Edit" asp-route-id="@item.VendorProductID" class="btn btn-warning btn-sm">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.VendorProductID" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-danger">Kayıt bulunamadı.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

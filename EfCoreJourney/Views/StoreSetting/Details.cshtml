@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.StoreSetting
+@{
+    ViewData["Title"] = "Mağaza Ayarı Detayı";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Para Birimi</th>
+        <td>@Model.Currency</td>
+    </tr>
+    <tr>
+        <th>Dil</th>
+        <td>@Model.Language</td>
+    </tr>
+    <tr>
+        <th>Bildirim Durumu</th>
+        <td>@(Model.EnableNotifications ? "Açık" : "Kapalı")</td>
+    </tr>
+    <tr>
+        <th>Bağlı Mağaza</th>
+        <td>@Model.Store?.Name ?? "<em>Mağaza bulunamadı</em>"</td>
+    </tr>
+    <tr>
+        <th>Mağaza Sahibi</th>
+        <td>@Model.Store?.OwnerName</td>
+    </tr>
+    <tr>
+        <th>Mağaza E-Posta</th>
+        <td>@Model.Store?.Email</td>
+    </tr>
+</table>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+

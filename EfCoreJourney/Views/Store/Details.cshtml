@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.Store
+@{
+    ViewData["Title"] = "Mağaza Detay Sayfası";
+}
+
+<h2 class="mb-4">
+    <strong>
+        @ViewData["Title"]
+    </strong>
+</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Mağaza Adı</th>
+        <td>@Model.Name</td>
+    </tr>
+     <tr>
+        <th>Mağaza Sahibinin Adı</th>
+        <td>@Model.OwnerName</td>
+    </tr>
+    <tr>
+        <th>E-Mail</th>
+        <td>@Model.Email</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Ana Sayfa</a>

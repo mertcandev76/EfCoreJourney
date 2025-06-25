@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.ProductVendor
+@{
+    ViewData["Title"] = "Ürün Tedarikçi Detayı";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Firma Adı</th>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <th>İlgili Kişi</th>
+        <td>@Model.ContactPerson</td>
+    </tr>
+    <tr>
+        <th>E-Mail</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Telefon</th>
+        <td>@Model.Phone</td>
+    </tr>
+</table>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+

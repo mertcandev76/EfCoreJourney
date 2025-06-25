@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.ProductCategory
+@{
+    ViewData["Title"] = "Kategori Silme Sayfası";
+}
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>Bu kategori alanını silmek istediğinize emin misiniz?</strong>
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Kategori Adı</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Açıklama</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ProductCategoryID" />
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">İptal</a>
+    </div>
+</form>
+

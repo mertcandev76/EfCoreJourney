@@ -16,24 +16,64 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\adsiz\OneDrive\Masaüstü\CoreEfCoreJourney\EfCoreJourney\EfCoreJourney
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CouponStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Coupon/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCouponWithCustomerAndCouponStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25XaXRoQ3VzdG9tZXJBbmRDb3Vwb25TdGF0aWNcSW5kZXguY3NodG1s
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Coupon/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJTdGF0aWNcSW5kZXguY3NodG1s
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Coupon/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerWithOrdersStatic/GetCustomerById.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJXaXRoT3JkZXJzU3RhdGljXEdldEN1c3RvbWVyQnlJZC5jc2h0bWw=
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Coupon/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerWithOrdersStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJXaXRoT3JkZXJzU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Coupon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cG9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCoupon/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCoupon/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCoupon/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCoupon/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/CustomerCoupon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJDb3Vwb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Home/Index.cshtml]
@@ -44,40 +84,184 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/LogStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Log/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/LogStatic/StaticLogById.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nU3RhdGljXFN0YXRpY0xvZ0J5SWQuY3NodG1s
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Log/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetailWithOrderAndProductStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxXaXRoT3JkZXJBbmRQcm9kdWN0U3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Log/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPaymentWithOrderStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50V2l0aE9yZGVyU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Log/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipmentWithOrderStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFdpdGhPcmRlclN0YXRpY1xJbmRleC5jc2h0bWw=
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Log/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderWithCustomerStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJXaXRoQ3VzdG9tZXJTdGF0aWNcSW5kZXguY3NodG1s
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetail/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrandStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetail/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendorStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclN0YXRpY1xJbmRleC5jc2h0bWw=
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetail/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductWithProductBrandStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFdpdGhQcm9kdWN0QnJhbmRTdGF0aWNcSW5kZXguY3NodG1s
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetail/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderDetail/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPayment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPayment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPayment/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPayment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderPayment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJQYXltZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipment/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/OrderShipment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJTaGlwbWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Order/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Order/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Order/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Order/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrand/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrand/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrand/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrand/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductBrand/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEJyYW5kXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductCategory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdENhdGVnb3J5XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductCategory/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdENhdGVnb3J5XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductCategory/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdENhdGVnb3J5XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductCategory/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdENhdGVnb3J5XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdENhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendor/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendor/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/ProductVendor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFZlbmRvclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Product/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Product/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Shared/Error.cshtml]
@@ -88,20 +272,64 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSettingWithStoreStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nV2l0aFN0b3JlU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSetting/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreWithStoreSettingStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVXaXRoU3RvcmVTZXR0aW5nU3RhdGljXEluZGV4LmNzaHRtbA==
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSetting/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreWithStoreSettingStatic/StoreById.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVXaXRoU3RvcmVTZXR0aW5nU3RhdGljXFN0b3JlQnlJZC5jc2h0bWw=
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSetting/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProductWithProductAndProductVendorStatic/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFdpdGhQcm9kdWN0QW5kUHJvZHVjdFZlbmRvclN0YXRpY1xJbmRleC5jc2h0bWw=
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSetting/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/StoreSetting/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVTZXR0aW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Store/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Store/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Store/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Store/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/Store/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProduct/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProduct/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProduct/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProduct/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/VendorProduct/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/adsiz/OneDrive/Masaüstü/CoreEfCoreJourney/EfCoreJourney/EfCoreJourney/Views/_ViewImports.cshtml]

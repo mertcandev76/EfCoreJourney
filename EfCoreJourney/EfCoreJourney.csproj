@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\I_RelationalEntities\A.MD" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -31,15 +27,6 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\DTOsLayer\DTOsLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Documentation\I_RelationalEntities\A_OneToOneBidirectional\" />
-    <Folder Include="Documentation\I_RelationalEntities\B_OneToManyBidirectional\" />
-    <Folder Include="Documentation\I_RelationalEntities\C_ManyToManyBidirectional\" />
-    <Folder Include="Documentation\I_RelationalEntities\D_OneToOneUnidirectional\" />
-    <Folder Include="Documentation\I_RelationalEntities\E_OneToManyUnidirectional\" />
-    <Folder Include="Documentation\I_RelationalEntities\F_ManyToManyUnidirectional\" />
   </ItemGroup>
 
 </Project>

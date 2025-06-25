@@ -1,0 +1,36 @@
+﻿@model EntityLayer.Concrete.ProductVendor
+@{
+    ViewData["Title"] = "Ürün Tedarikçisini Sil";
+}
+<h2 class="mb-4 text-danger fw-bold">@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>Bu ürün tedarikçisini silmek istediğinize emin misiniz?</strong>
+</div>
+
+<div class="mb-4">
+    <dl class="row">
+        <dt class="col-sm-3 fw-semibold">Firma Adı</dt>
+        <dd class="col-sm-9">@Model.CompanyName</dd>
+
+        <dt class="col-sm-3 fw-semibold">İlgili Kişi</dt>
+        <dd class="col-sm-9">@Model.ContactPerson</dd>
+
+        <dt class="col-sm-3 fw-semibold">E-Posta</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3 fw-semibold">Telefon</dt>
+        <dd class="col-sm-9">@Model.Phone</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ProductVendorID" />
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-danger px-4">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-outline-secondary px-4">İptal</a>
+    </div>
+</form>
+
+
+

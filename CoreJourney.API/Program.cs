@@ -1,6 +1,4 @@
-using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
-using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +14,10 @@ builder.Services.AddSwaggerGen();
 
 
 //Dependency Injection(Manuel) 
-builder.Services.AddScoped<ILogStaticRepository,LogStaticRepository>();
+
+//...
+
+
 
 //AppDbContext'i servise ekle(Manuel)
 builder.Services.AddDbContext<AppDbContext>(options =>

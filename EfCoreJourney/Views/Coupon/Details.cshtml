@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Coupon
+@{
+    ViewData["Title"] = "Kupon Detay";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Kupon Kodu</dt>
+    <dd class="col-sm-9">@Model.Code</dd>
+
+    <dt class="col-sm-3">İndirim Oranı</dt>
+    <dd class="col-sm-9">@Model.DiscountRate</dd>
+
+    <dt class="col-sm-3">Geçerli Tarih</dt>
+    <dd class="col-sm-9">@Model.ValidFrom.ToShortDateString() - @Model.ValidUntil.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Aktiflik</dt>
+    <dd class="col-sm-9">@((Model.IsActive) ? "Evet" : "Hayır")</dd>
+</dl>
+
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+

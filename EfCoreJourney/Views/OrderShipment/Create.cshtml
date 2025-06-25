@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.OrderShipment
+@{
+    ViewData["Title"] = "Yeni Kargo Ekle";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Carrier">Taşıyıcı</label>
+        <input asp-for="Carrier" class="form-control" placeholder="Kargo Firması Giriniz" />
+    </div>
+    <div class="form-group">
+        <label asp-for="TrackingNumber">Takip Numarası</label>
+        <input asp-for="TrackingNumber" class="form-control" placeholder="Takip Numarası Giriniz" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ShippedDate">Gönderim Tarihi</label>
+        <input asp-for="ShippedDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DeliveredDate">Teslim Tarihi</label>
+        <input asp-for="DeliveredDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OrderID">Ürün Notu</label>
+        <select asp-for="OrderID" class="form-control" asp-items="ViewBag.Orders"></select>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </div>
+
+</form>
+

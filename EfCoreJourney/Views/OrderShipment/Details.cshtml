@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.OrderShipment
+@{
+    ViewData["Title"] = "Kargo Detayları";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4 class="text-primary">📦 Kargo Bilgileri</h4>
+<dl class="row border p-3 rounded">
+    <dt class="col-sm-3">Kargo ID</dt>
+    <dd class="col-sm-9">@Model.OrderShipmentID</dd>
+
+    <dt class="col-sm-3">Kargo Firması</dt>
+    <dd class="col-sm-9">@Model.Carrier</dd>
+
+    <dt class="col-sm-3">Takip Numarası</dt>
+    <dd class="col-sm-9">@Model.TrackingNumber</dd>
+
+    <dt class="col-sm-3">Kargolandığı Tarih</dt>
+    <dd class="col-sm-9">@Model.ShippedDate?.ToString("dd.MM.yyyy")</dd>
+
+    <dt class="col-sm-3">Teslim Edildiği Tarih</dt>
+    <dd class="col-sm-9">@Model.DeliveredDate?.ToString("dd.MM.yyyy")</dd>
+</dl>
+
+@if (Model.Order != null)
+{
+    <h4 class="text-success mt-4">🧾 Sipariş Bilgileri</h4>
+    <dl class="row border p-3 rounded">
+        <dt class="col-sm-3">Sipariş ID</dt>
+        <dd class="col-sm-9">@Model.Order.OrderID</dd>
+
+        <dt class="col-sm-3">Sipariş Tarihi</dt>
+        <dd class="col-sm-9">@Model.Order.OrderDate.ToString("dd.MM.yyyy")</dd>
+
+        <dt class="col-sm-3">Toplam Tutar</dt>
+        <dd class="col-sm-9">@Model.Order.TotalAmount?.ToString("C")</dd>
+
+        <dt class="col-sm-3">Durum</dt>
+        <dd class="col-sm-9">@Model.Order.Status</dd>
+
+        <dt class="col-sm-3">Notlar</dt>
+        <dd class="col-sm-9">@Model.Order.Notes</dd>
+
+    </dl>
+}
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+

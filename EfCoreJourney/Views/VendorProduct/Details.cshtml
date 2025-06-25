@@ -1,0 +1,60 @@
+﻿@model EntityLayer.Concrete.VendorProduct
+@{
+    ViewData["Title"] = "Detay sayfası";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+<tr>
+    <th>Ürün Adı</th>
+    <td>@Model.Product?.Name ?? "<em>ürün adı bulunamadı</em></td>
+</tr>
+<tr>
+    <th>Ürün Açıklama</th>
+    <td>@Model.Product?.Description ?? "<em>ürün açıklama bulunamadı</em></td>
+</tr>
+<tr>
+    <th>Fiyat</th>
+    <td>@Model.Product?.Price ?? "<em>fiyat  bulunamadı</em></td>
+</tr>
+<tr>
+    <th>Stok</th>
+    <td>@Model.Product?.Stock ?? "<em>stok bulunamadı</em></td>
+</tr>
+<tr>
+    <th>Aktiv mi?</th>
+        <td>@(Model.Product.IsActive ? "Evet" : "Hayır")</td>
+</tr>
+<tr>
+    <th>Firma Adı</th>
+    <td>@Model.ProductVendor?.CompanyName ?? "<em>firma adı bulunamadı</em>"</td>
+</tr>
+<tr>
+    <th>İlgili kişi</th>
+    <td>@Model.ProductVendor?.ContactPerson ?? "<em>ilgili kişi bulunamadı</em>"</td>
+</tr>
+<tr>
+    <th>E-Mail</th>
+    <td>@Model.ProductVendor?.Email ?? "<em>e-mail bulunamadı</em>"</td>
+</tr>
+<tr>
+    <th>Telefon</th>
+    <td>@Model.ProductVendor?.Phone ?? "<em>telfon bulunamadı</em>"</td>
+</tr>
+<tr>
+    <th>Tedarik Fiyat</th>
+    <td>@Model.SupplyPrice ?? "<em>tedarik fiyatı bulunamadı</em>"</td>
+</tr>
+<tr>
+    <th>Tedarik Tarihi</th>
+    <td>@Model.SuppliedDate ?? "<em>tedarik tarihi bulunamadı</em>"</td>
+</tr>
+
+</table>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+</div>
+
+

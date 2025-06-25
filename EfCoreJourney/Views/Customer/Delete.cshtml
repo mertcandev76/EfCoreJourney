@@ -1,0 +1,27 @@
+﻿@model EntityLayer.Concrete.Customer
+@{
+    ViewData["Title"] = "Müşteri Sil";
+}
+
+<div class="alert alert-warning">
+    <strong>Bu müşteriyi silmek istediğinizden emin misiniz?</strong>
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Ad Soyad</dt>
+        <dd class="col-sm-10">@Model.FullName</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="CustomerID" />
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">İptal</a>
+    </div>
+</form>
+

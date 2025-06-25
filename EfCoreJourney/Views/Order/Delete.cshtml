@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Concrete.Order
+@{
+    ViewData["Title"] = "Sipariş Sil";
+}
+
+<h2 class="text-danger">Siparişi Sil</h2>
+
+<div class="alert alert-warning">
+    Bu siparişi silmek istediğinize emin misiniz?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Müşteri</dt>
+    <dd class="col-sm-9">@Model.Customer?.FullName</dd>
+
+    <dt class="col-sm-3">Tarih</dt>
+    <dd class="col-sm-9">@Model.OrderDate.ToString("dd.MM.yyyy")</dd>
+
+    <dt class="col-sm-3">Tutar</dt>
+    <dd class="col-sm-9">@Model.TotalAmount ₺</dd>
+
+    <dt class="col-sm-3">Durum</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+
+    <dt class="col-sm-3">Not</dt>
+    <dd class="col-sm-9">@Model.Notes</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="OrderID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
+

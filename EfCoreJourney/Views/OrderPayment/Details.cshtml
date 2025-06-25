@@ -1,0 +1,51 @@
+﻿@model EntityLayer.Concrete.OrderPayment
+@{
+    ViewData["Title"] = "Ödeme Detayları";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<dl class="row">
+
+    <dt class="col-sm-3">Tutar</dt>
+    <dd class="col-sm-9">@Model.Amount.ToString("C")</dd>
+
+    <dt class="col-sm-3">Ödeme Yöntemi</dt>
+    <dd class="col-sm-9">@Model.PaymentMethod</dd>
+
+    <dt class="col-sm-3">Ödeme Tarihi</dt>
+    <dd class="col-sm-9">@Model.PaymentDate?.ToShortDateString()</dd>
+</dl>
+
+<hr />
+<h4 class="mt-4">İlgili Sipariş Bilgileri</h4>
+
+@if (Model.Order != null)
+{
+    <dl class="row">
+
+
+        <dt class="col-sm-3">Sipariş Tarihi</dt>
+        <dd class="col-sm-9">@Model.Order.OrderDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Toplam Tutar</dt>
+        <dd class="col-sm-9">@Model.Order.TotalAmount?.ToString("C")</dd>
+
+        <dt class="col-sm-3">Durum</dt>
+        <dd class="col-sm-9">@Model.Order.Status</dd>
+
+        <dt class="col-sm-3">Notlar</dt>
+        <dd class="col-sm-9">@Model.Order.Notes</dd>
+
+       
+    </dl>
+}
+else
+{
+    <p class="text-warning">Bu ödemeye ait sipariş bilgisi bulunamadı.</p>
+}
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary mt-3">Geri Dön</a>
+</div>
+
+

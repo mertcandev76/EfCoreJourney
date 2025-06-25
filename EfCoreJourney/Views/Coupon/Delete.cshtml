@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.Coupon
+@{
+    ViewData["Title"] = "Kupon Sil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>Bu kuponu silmek istediğinize emin misiniz?</strong>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Kod</dt>
+    <dd class="col-sm-9">@Model.Code</dd>
+
+    <dt class="col-sm-3">İndirim Oranı</dt>
+    <dd class="col-sm-9">@Model.DiscountRate</dd>
+
+    <dt class="col-sm-3">Tarih</dt>
+    <dd class="col-sm-9">@Model.ValidFrom.ToShortDateString() - @Model.ValidUntil.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Aktif mi?</dt>
+    <dd class="col-sm-9">@((Model.IsActive) ? "Evet" : "Hayır")</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="CouponID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
+

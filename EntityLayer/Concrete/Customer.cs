@@ -25,7 +25,7 @@ namespace EntityLayer.Concrete
 
         public string? Address { get; set; }
         public bool? IsActive { get; set; }
-        public DateTime RegisteredDate { get; set; } = DateTime.Now;
+        public DateTime? BirthDate { get; set; }
 
         public ICollection<Order>? Orders { get; set; }
         public ICollection<CustomerCoupon>? CustomerCoupons { get; set; }

@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.StoreSetting
+@{
+    ViewData["Title"] = "Silme Onayı";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>Bu mağaza ayarını silmek istediğinize emin misiniz?</strong>
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Para Birimi</dt>
+        <dd class="col-sm-9">@Model.Currency</dd>
+
+        <dt class="col-sm-3">Dil</dt>
+        <dd class="col-sm-9">@Model.Language</dd>
+
+        <dt class="col-sm-3">Bildirim Durumu</dt>
+        <dd class="col-sm-9">
+            @(Model.EnableNotifications ? "Açık" : "Kapalı")
+        </dd>
+
+        <dt class="col-sm-3">Bağlı Mağaza</dt>
+        <dd class="col-sm-9">@Model.Store?.Name ?? "<em>Mağaza bulunamadı</em>"</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="StoreSettingID" />
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">İptal</a>
+    </div>
+</form>
+

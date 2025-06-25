@@ -1,0 +1,42 @@
+﻿@model List<EntityLayer.Concrete.ProductVendor>
+@{
+    ViewData["Title"] = "Ürün Tedarikçileri Listesi";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success">Ekle</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Firma Adı </th>
+            <th>İlgili kişi</th>
+            <th>E-Mail</th>
+            <th>Telefon</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productVendor in Model)
+        {
+            <tr>
+                <td>@productVendor.ProductVendorID</td>
+                <td>@productVendor.CompanyName</td>
+                <td>@productVendor.ContactPerson</td>
+                <td>@productVendor.Email</td>
+                <td>@productVendor.Phone</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@productVendor.ProductVendorID" class="btn btn-info btn btn-sm">Detaylar</a>
+                    <a asp-action="Edit" asp-route-id="@productVendor.ProductVendorID" class="btn btn-warning btn btn-sm">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@productVendor.ProductVendorID" class="btn btn-danger btn btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,24 @@
+﻿@model EntityLayer.Concrete.OrderDetail
+@{
+    ViewData["Title"] = "Sipariş Detayı Sil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Silmek istediğiniz sipariş detayını onaylayınız:</h4>
+
+<div class="card p-3 mb-3">
+    <p><strong>Sipariş Tarihi:</strong> @Model.Order?.OrderDate.ToShortDateString()</p>
+    <p><strong>Ürün Açıklaması:</strong> @Model.Product?.Description</p>
+    <p><strong>Miktar:</strong> @Model.Quantity</p>
+    <p><strong>Birim Fiyat:</strong> @Model.UnitPrice.ToString("C")</p>
+    <p><strong>İndirim:</strong> @(Model.Discount.HasValue ? Model.Discount.Value.ToString("P") : "-")</p>
+    <p><strong>Notlar:</strong> @Model.Notes</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="OrderDetailID" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+

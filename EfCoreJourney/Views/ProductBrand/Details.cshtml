@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.ProductBrand
+@{
+    ViewData["Title"] = "Ürün Marka Detayı";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Marka Adı</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Açıklama</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Ülke</th>
+        <td>@Model.Country</td>
+    </tr>
+</table>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+
+</div>
+
+
